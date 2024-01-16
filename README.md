@@ -1,16 +1,22 @@
 # veterinary-hospital
 ## 동물병원 예약제 시스템
 
+
+
 ## 개발기간 
-(목표) 24.01.15 ~ 24.01.31
---- 
+- (목표) 24.01.15 ~ 24.01.31
+
+
+
 ## 개발 환경
 - java17
 - **IDE** : intelliJ
 - **Framework** : Springboot(3.x)
 - **Database** : 미정, 테스트( H2 )
 - **ORM** : Mybatis
---- 
+
+
+
 ## 주요기능
 #### 로그인
 - DB값 검증
