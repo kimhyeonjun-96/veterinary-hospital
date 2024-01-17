@@ -1,9 +1,9 @@
 package com.myProject.treatment.domain.animal.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.myProject.treatment.domain.user.domain.Member;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Animal {
@@ -14,11 +14,14 @@ public class Animal {
     private int Height;
     private int Weight;
     private Animal_type TYPE;
-    private Long MemberID;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member MemberID;
 
     public Animal() {}
 
-    public Animal(String name, int height, int weight, Animal_type TYPE, Long memberID) {
+    public Animal(String name, int height, int weight, Animal_type TYPE, Member memberID) {
         Name = name;
         Height = height;
         Weight = weight;
@@ -46,7 +49,7 @@ public class Animal {
         return TYPE;
     }
 
-    public Long getMemberID() {
+    public Member getMemberID() {
         return MemberID;
     }
 }

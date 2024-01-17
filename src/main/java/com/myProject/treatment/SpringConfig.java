@@ -1,6 +1,10 @@
 package com.myProject.treatment;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.myProject.treatment.domain.animal.dao.AnimalRepository;
+import com.myProject.treatment.domain.animal.dao.JpaAnimalRepository;
+import com.myProject.treatment.domain.animal.domain.Animal;
+import com.myProject.treatment.domain.animal.service.AnimalServiceImpl;
 import com.myProject.treatment.domain.user.dao.JpaMemberRepository;
 import com.myProject.treatment.domain.user.dao.MemberRepository;
 import com.myProject.treatment.domain.user.service.MemberServiceImpl;
@@ -24,7 +28,17 @@ public class SpringConfig {
     }
 
     @Bean
+    public AnimalServiceImpl animalService(){
+        return new AnimalServiceImpl(animalRepository());
+    }
+
+    @Bean
     public MemberRepository memberRepository(){
         return new JpaMemberRepository(em);
+    }
+
+    @Bean
+    public AnimalRepository animalRepository(){
+        return new JpaAnimalRepository(em);
     }
 }

@@ -27,10 +27,10 @@ public class JpaMemberRepository implements MemberRepository{
     }
 
     @Override
-    public Optional<Member> findByMemberIdAndMemberName(String MemberId, String MemberName) {
-        List<Member> result = em.createQuery("select m from Member m where m.MemberId = :MemberId and m.MemberName = : MemberName", Member.class)
-                .setParameter("MemberId", MemberId)
-                .setParameter("MemberName", MemberName)
+    public Optional<Member> findByMemberIdAndMemberName(String member_id, String member_name) {
+        List<Member> result = em.createQuery("select m from Member m where m.member_id = :member_id and m.member_name = : member_name", Member.class)
+                .setParameter("member_id", member_id)
+                .setParameter("member_name", member_name)
                 .getResultList();
 
         return result.stream().findAny();

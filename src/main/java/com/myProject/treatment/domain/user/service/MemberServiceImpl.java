@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService{
      */
     @Override
     public void validateDuplicateMember(Member member) {
-        memberRepository.findByMemberIdAndMemberName(member.getMemberId(), member.getMemberName()).ifPresent(m -> {
+        memberRepository.findByMemberIdAndMemberName(member.getMember_id(), member.getMember_name()).ifPresent(m -> {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         });
     }

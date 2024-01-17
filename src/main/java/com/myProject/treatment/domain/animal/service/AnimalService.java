@@ -4,5 +4,5 @@ import com.myProject.treatment.domain.animal.domain.Animal;
 
 public interface AnimalService {
 
-    public Long regist(Animal animal, Long member_id);
+    public Animal regist(Animal animal, Long member_id);
 }
