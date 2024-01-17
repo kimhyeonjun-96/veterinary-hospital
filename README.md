@@ -12,8 +12,8 @@
 - java17
 - **IDE** : intelliJ
 - **Framework** : Springboot(3.x)
-- **Database** : 미정, 테스트( H2 )
-- **ORM** : Mybatis
+- **Database** : Mysql(8.1.0)
+- **ORM** : JPA
 
 
 
