@@ -1,4 +1,4 @@
-package com.myProject.treatment.domain.treatment.domain;
+package com.myProject.treatment.domain.treatment;
 
 import com.myProject.treatment.domain.member.Member;
 import jakarta.persistence.*;

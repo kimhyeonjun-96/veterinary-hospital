@@ -2,10 +2,12 @@ package com.myProject.treatment.domain.animal.dao;
 
 import com.myProject.treatment.domain.animal.Animal;
 import jakarta.persistence.EntityManager;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class JpaAnimalRepository implements AnimalRepository{
     private final EntityManager em;
 

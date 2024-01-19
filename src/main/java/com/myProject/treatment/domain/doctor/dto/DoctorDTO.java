@@ -1,6 +1,6 @@
 package com.myProject.treatment.domain.doctor.dto;
 
-import com.myProject.treatment.domain.treatment.domain.Treatment;
+import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;

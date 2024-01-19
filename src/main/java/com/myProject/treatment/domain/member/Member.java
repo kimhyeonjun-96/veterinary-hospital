@@ -1,6 +1,6 @@
 package com.myProject.treatment.domain.member;
 
-import com.myProject.treatment.domain.treatment.domain.Treatment;
+import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
 
 @Entity
