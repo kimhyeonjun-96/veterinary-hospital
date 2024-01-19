@@ -1,7 +1,7 @@
 package com.myProject.treatment.domain.animal.service;
 
 import com.myProject.treatment.domain.animal.dao.AnimalRepository;
-import com.myProject.treatment.domain.animal.domain.Animal;
+import com.myProject.treatment.domain.animal.Animal;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 

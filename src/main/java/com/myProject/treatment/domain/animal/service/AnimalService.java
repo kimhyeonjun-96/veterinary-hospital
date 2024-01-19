@@ -1,6 +1,6 @@
 package com.myProject.treatment.domain.animal.service;
 
-import com.myProject.treatment.domain.animal.domain.Animal;
+import com.myProject.treatment.domain.animal.Animal;
 
 public interface AnimalService {
 

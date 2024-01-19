@@ -1,7 +1,6 @@
 package com.myProject.treatment.domain.animal.dao;
 
-import com.myProject.treatment.domain.animal.domain.Animal;
-import jakarta.persistence.Entity;
+import com.myProject.treatment.domain.animal.Animal;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;

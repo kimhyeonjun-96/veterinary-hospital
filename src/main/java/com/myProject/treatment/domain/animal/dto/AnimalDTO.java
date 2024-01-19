@@ -1,6 +1,5 @@
 package com.myProject.treatment.domain.animal.dto;
 
-import com.myProject.treatment.domain.animal.domain.Animal_type;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,6 @@
 package com.myProject.treatment.domain.treatment.domain;
 
-import com.myProject.treatment.domain.user.domain.Member;
+import com.myProject.treatment.domain.member.Member;
 import jakarta.persistence.*;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.myProject.treatment.domain.animal.dao;
 
-import com.myProject.treatment.domain.animal.domain.Animal;
-import com.myProject.treatment.domain.user.domain.Member;
+import com.myProject.treatment.domain.animal.Animal;
 
 import java.util.Optional;
 

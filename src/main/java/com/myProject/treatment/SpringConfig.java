@@ -1,13 +1,11 @@
 package com.myProject.treatment;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.myProject.treatment.domain.animal.dao.AnimalRepository;
 import com.myProject.treatment.domain.animal.dao.JpaAnimalRepository;
-import com.myProject.treatment.domain.animal.domain.Animal;
 import com.myProject.treatment.domain.animal.service.AnimalServiceImpl;
-import com.myProject.treatment.domain.user.dao.JpaMemberRepository;
-import com.myProject.treatment.domain.user.dao.MemberRepository;
-import com.myProject.treatment.domain.user.service.MemberServiceImpl;
+import com.myProject.treatment.domain.member.dao.JpaMemberRepository;
+import com.myProject.treatment.domain.member.dao.MemberRepository;
+import com.myProject.treatment.domain.member.service.MemberServiceImpl;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
