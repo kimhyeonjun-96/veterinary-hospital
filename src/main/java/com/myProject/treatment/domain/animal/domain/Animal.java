@@ -13,7 +13,7 @@ public class Animal {
     private String Name;
     private int Height;
     private int Weight;
-    private Animal_type TYPE;
+    private String type;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -21,12 +21,12 @@ public class Animal {
 
     public Animal() {}
 
-    public Animal(String name, int height, int weight, Animal_type TYPE, Member memberID) {
-        Name = name;
-        Height = height;
-        Weight = weight;
-        this.TYPE = TYPE;
-        MemberID = memberID;
+    public Animal(String name, int height, int weight, String type, Member memberID) {
+        this.Name = name;
+        this.Height = height;
+        this.Weight = weight;
+        this.type = type;
+        this.MemberID = memberID;
     }
 
     public Long getID() {
@@ -45,8 +45,8 @@ public class Animal {
         return Weight;
     }
 
-    public Animal_type getTYPE() {
-        return TYPE;
+    public String getTYPE() {
+        return type;
     }
 
     public Member getMemberID() {

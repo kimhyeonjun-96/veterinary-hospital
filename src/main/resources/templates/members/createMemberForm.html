@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <style>
+            .fieldError {
+                border-color: #bd2130;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+                <form action="/members/new" method="post">
+
+                    <div class="form-group">
+                        <label for="memberId">Id</label>
+                        <input type="text" id="memberId" name="memberId" placeholder="패스워드를 입력하세요">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memberPwd">Password</label>
+                        <input type="password" id="memberPwd" name="memberPwd" placeholder="패스워드를 입력하세요">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memberName">이름</label>
+                        <input type="text" id="memberName" name="memberName" placeholder="이름을 입력하세요">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memberPhone">전화번호</label>
+                        <input type="text" id="memberPhone" name="memberPhone" placeholder="전화번호를 입력하세요">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">주소</label>
+                        <input type="text" id="address" name="address" placeholder="주소를 입력하세요">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <br/>
+        </div> <!-- /container -->
+    </body>
+</html>

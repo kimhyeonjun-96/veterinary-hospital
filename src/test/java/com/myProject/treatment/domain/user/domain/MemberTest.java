@@ -28,20 +28,19 @@ class MemberTest {
     public void 회원만가입(){
         Member member = new Member("test01", "test01", "test01", "010-1111-1111", "서울시 강동구");
 
-        Long saveId = memberService.join(member);
+        Member member1 = memberService.join(member);
 
-        Member findMember = memberService.findOne(saveId).get();
+        Member findMember = memberService.findOne(member1.getID()).get();
         assertThat(member.getID()).isEqualTo(findMember.getID());
 
     }
 
     @Test
-    public void 회원_반료동물_회원가입(){
+    public void 회원_반료동물_등록(){
         Member member = new Member("test01", "test01", "test01", "010-1111-1111", "서울시 강동구");
-        Long member_id = memberService.join(member);
 
-        Animal animal = new Animal("test01_동물", 60, 5, Animal_type.CAT, member);
-        Animal regist_animal = animalService.regist(animal, member_id);
+        Animal animal = new Animal("test01_동물", 60, 5, "CAT", member);
+        Animal regist_animal = animalService.regist(animal, member.getID());
 
 
         assertThat(animal.getMemberID()).isEqualTo(regist_animal.getMemberID());

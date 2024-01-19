@@ -22,11 +22,11 @@ public class MemberServiceImpl implements MemberService{
      *회원가입
      */
     @Override
-    public Long join(Member member) {
+    public Member join(Member member) {
         validateDuplicateMember(member);
         memberRepository.save(member);
 
-        return member.getID();
+        return member;
     }
 
     /**

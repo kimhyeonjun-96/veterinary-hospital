@@ -1,12 +1,12 @@
-package com.myProject.treatment.domain.welcom;
+package com.myProject.treatment.domain.welcome;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class WelcomController {
+public class WelcomeController {
     @GetMapping("/")
     public String welcom(){
-        return "Hello, world!";
+        return "Welcome Page!";
     }
 }

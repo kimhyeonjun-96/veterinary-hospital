@@ -1,40 +1,34 @@
-package com.myProject.treatment.domain.user.domain;
+package com.myProject.treatment.domain.user.dto;
 
 import com.myProject.treatment.domain.treatment.domain.Treatment;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.beans.ConstructorProperties;
+
+@Getter @Setter
 public class MemberDTO {
-    private Long ID;
-    private String MemberId;
-    private String MemberPwd;
-    private String MemberName;
-    private String MemberPhone;
-    private String Address;
+    @NotEmpty(message = "회원 아이디는 필수 입니다.")
+    private String memberId;
+    private String memberPwd;
+
+    @NotEmpty(message = "회원 이름은 필수 입니다.")
+    private String memberName;
+    private String memberPhone;
+    private String address;
+
     private Treatment treatment;
 
+    public MemberDTO() {}
 
-    public Long getID() {
-        return ID;
+    @ConstructorProperties({"memberId", "memberPwd", "memberName", "memberPhone", "address"})
+    public MemberDTO(String memberId, String memberPwd, String memberName, String memberPhone, String address) {
+        this.memberId = memberId;
+        this.memberPwd = memberPwd;
+        this.memberName = memberName;
+        this.memberPhone = memberPhone;
+        this.address = address;
     }
-
-    public String getMemberId() {
-        return MemberId;
-    }
-
-    public String getMemberPwd() {
-        return MemberPwd;
-    }
-
-    public String getMemberName() {
-        return MemberName;
-    }
-
-    public String getMemberPhone() {
-        return MemberPhone;
-    }
-
-    public String getAddress() {
-        return Address;
-    }
-
 }
