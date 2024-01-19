@@ -31,6 +31,7 @@ class AnimalServiceImplTest {
 
         List<Animal> animalList = animalService.getAnimal(member.getID());
 
+        // pr test!!
         for(Animal animal : animalList){
             System.out.println(animal);
         }
