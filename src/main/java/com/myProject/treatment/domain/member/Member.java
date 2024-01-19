@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+    private Long id;
 
     @Column(name = "member_id")
     private String member_id;
@@ -19,7 +19,7 @@ public class Member {
     @Column(name = "member_phone")
     private String member_phone;
     @Column(name = "address")
-    private String Address;
+    private String address;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "treatment_id")
@@ -28,36 +28,35 @@ public class Member {
 
     public Member() {}
     public Member(String memberid, String memberpwd, String membername, String memberphone, String address) {
-        member_id = memberid;
-        member_pwd = memberpwd;
-        member_name = membername;
-        member_phone = memberphone;
-        Address = address;
+        this.member_id = memberid;
+        this.member_pwd = memberpwd;
+        this.member_name = membername;
+        this.member_phone = memberphone;
+        this.address = address;
     }
 
-
-    public Long getID() {
-        return ID;
+    public Long getId() {
+        return this.id;
     }
 
     public String getMember_id() {
-        return member_id;
+        return this.member_id;
     }
 
     public String getMember_pwd() {
-        return member_pwd;
+        return this.member_pwd;
     }
 
     public String getMember_name() {
-        return member_name;
+        return this.member_name;
     }
 
     public String getMember_phone() {
-        return member_phone;
+        return this.member_phone;
     }
 
     public String getAddress() {
-        return Address;
+        return this.address;
     }
 
 }

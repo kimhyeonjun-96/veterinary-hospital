@@ -26,9 +26,7 @@ public class MemberController {
      * 회원가입
      */
     @PostMapping("/new")
-    public ResponseEntity<?> create(
-            @RequestBody MemberDTO resource
-    )throws URISyntaxException{
+    public ResponseEntity<?> create(@RequestBody MemberDTO resource)throws URISyntaxException{
         String memberId = resource.getMemberId();
         String memberPwd = resource.getMemberPwd();
         String memberName = resource.getMemberName();
@@ -37,7 +35,7 @@ public class MemberController {
 
         Member addMember = memberService.join(new Member(memberId, memberPwd, memberName, memberPhone, address));
 
-        String url = "/members/" + addMember.getID();
+        String url = "/members/" + addMember.getId();
 
         return ResponseEntity.created(new URI(url)).body(addMember.getMember_name());
     }
@@ -66,18 +64,18 @@ public class MemberController {
         if (member == null) {
             return ResponseEntity.notFound().build();
         }
-        String url = "/members/mypage" + member.getID();
+        String url = "/members/mypage" + member.getId();
 
         return ResponseEntity.ok(member);
     }
 
     /**
-     * 회원 반료 동물 등록
+     * 회원 반려동물 등록
      */
     @PostMapping("/registMyPet")
     public ResponseEntity<?>registMyPet(@RequestBody AnimalDTO resource, @RequestParam Long id)throws URISyntaxException{
         Member member = memberService.findOne(id).get();
-        Animal animal = animalService.regist(new Animal(resource.getName(), resource.getHeight(), resource.getWeight(), resource.getTYPE(), member), member.getID());
+        Animal animal = animalService.regist(new Animal(resource.getName(), resource.getHeight(), resource.getWeight(), resource.getTYPE(), member), member.getId());
 
         String url = "/members/" + animal.getMemberID() + "/" + animal.getName();
         String responseBody = "memberId: " + animal.getMemberID().getID() + ", petName: " + animal.getName();

@@ -11,7 +11,9 @@ import java.util.List;
 @Service
 @Transactional
 public class AnimalServiceImpl implements AnimalService{
+
     private final AnimalRepository animalRepository;
+
     @Autowired
     public AnimalServiceImpl(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
@@ -24,7 +26,6 @@ public class AnimalServiceImpl implements AnimalService{
     @Override
     public Animal regist(Animal animal, Long member_id) {
         animalRepository.save(animal, member_id);
-
         return animal;
     }
 
@@ -33,7 +34,6 @@ public class AnimalServiceImpl implements AnimalService{
      */
     @Override
     public List<Animal> getAnimal(Long memberId) {
-
         return animalRepository.findByMemberId(memberId);
     }
 }

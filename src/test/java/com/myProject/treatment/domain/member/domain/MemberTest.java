@@ -30,8 +30,8 @@ class MemberTest {
 
         Member member1 = memberService.join(member);
 
-        Member findMember = memberService.findOne(member1.getID()).get();
-        assertThat(member.getID()).isEqualTo(findMember.getID());
+        Member findMember = memberService.findOne(member1.getId()).get();
+        assertThat(member.getId()).isEqualTo(findMember.getId());
 
     }
 
@@ -40,7 +40,7 @@ class MemberTest {
         Member member = new Member("test01", "test01", "test01", "010-1111-1111", "서울시 강동구");
 
         Animal animal = new Animal("test01_동물", 60, 5, "CAT", member);
-        Animal regist_animal = animalService.regist(animal, member.getID());
+        Animal regist_animal = animalService.regist(animal, member.getId());
 
 
         assertThat(animal.getMemberID()).isEqualTo(regist_animal.getMemberID());
