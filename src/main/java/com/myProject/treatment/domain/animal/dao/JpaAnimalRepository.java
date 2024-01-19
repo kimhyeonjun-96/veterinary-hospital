@@ -29,11 +29,11 @@ public class JpaAnimalRepository implements AnimalRepository{
     }
 
     @Override
-    public Optional<Animal> findByMemberId(String memberId) {
+    public List<Animal> findByMemberId(Long memberId) {
         List<Animal> result = em.createQuery("select a from Animal a where a.MemberID = :memberId", Animal.class)
                 .setParameter("memberId", memberId)
                 .getResultList();
 
-        return result.stream().findAny();
+        return result;
     }
 }

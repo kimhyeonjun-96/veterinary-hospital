@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AnimalServiceImpl implements AnimalService{
@@ -24,5 +26,14 @@ public class AnimalServiceImpl implements AnimalService{
         animalRepository.save(animal, member_id);
 
         return animal;
+    }
+
+    /**
+     * 회원의 특정 반려동물 확인
+     */
+    @Override
+    public List<Animal> getAnimal(Long memberId) {
+
+        return animalRepository.findByMemberId(memberId);
     }
 }

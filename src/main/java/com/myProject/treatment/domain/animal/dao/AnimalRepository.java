@@ -2,6 +2,7 @@ package com.myProject.treatment.domain.animal.dao;
 
 import com.myProject.treatment.domain.animal.Animal;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AnimalRepository {
@@ -9,5 +10,5 @@ public interface AnimalRepository {
 
     Optional<Animal> findById(Long id);
 
-    Optional<Animal> findByMemberId(String memberId);
+    List<Animal> findByMemberId(Long memberId);
 }

@@ -1,5 +1,6 @@
 package com.myProject.treatment.domain.animal.dto;
 
+import com.myProject.treatment.domain.member.Member;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,4 +13,6 @@ public class AnimalDTO {
     private int Height;
     private int Weight;
     private String TYPE;
+
+    private Member member;
 }

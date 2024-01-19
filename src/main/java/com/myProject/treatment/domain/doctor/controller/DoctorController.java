@@ -3,7 +3,6 @@ package com.myProject.treatment.domain.doctor.controller;
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.doctor.service.DoctorService;
-import com.myProject.treatment.domain.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
