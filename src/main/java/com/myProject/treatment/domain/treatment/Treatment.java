@@ -2,7 +2,7 @@ package com.myProject.treatment.domain.treatment;
 
 import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.doctor.Doctor;
-import com.myProject.treatment.domain.member.Member;
+import com.myProject.treatment.domain.member.MemberDTO;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class Treatment {
     private String purpose;
 
     @OneToMany(mappedBy = "treatment")
-    private List<Member> members;
+    private List<MemberDTO> memberDTOS;
 
     @ManyToOne
     @JoinColumn(name = "animal_id")

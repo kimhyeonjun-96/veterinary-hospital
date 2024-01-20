@@ -1,7 +1,7 @@
 package com.myProject.treatment.domain.member.service;
 
 import com.myProject.treatment.domain.member.dao.MemberRepository;
-import com.myProject.treatment.domain.member.Member;
+import com.myProject.treatment.domain.member.MemberDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,25 +24,28 @@ public class MemberServiceImpl implements MemberService{
      *회원가입
      */
     @Override
-    public Member join(Member member) {
-        validateDuplicateMember(member);
-        memberRepository.save(member);
+    public MemberDTO signupMember(MemberDTO memberDTO) {
+        validateDuplicateMember(memberDTO);
+        memberRepository.saveMember(memberDTO);
 
-        return member;
+        return memberDTO;
     }
 
     /**
      *회원가입 시 중복회원 검증
      */
     @Override
-    public void validateDuplicateMember(Member member) {
-        memberRepository.findByMemberIdAndMemberName(member.getMember_id(), member.getMember_name()).ifPresent(m -> {
+    public void validateDuplicateMember(MemberDTO memberDTO) {
+        memberRepository.findByMemberIdAndMemberName(memberDTO.getMemberId(), memberDTO.getMemberName()).ifPresent(m -> {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         });
     }
 
+    /**
+     * 회원 조회
+     */
     @Override
-    public Optional<Member> findOne(Long memberId) {
+    public Optional<MemberDTO> findOneMember(Long memberId) {
         return memberRepository.findById(memberId);
     }
 }

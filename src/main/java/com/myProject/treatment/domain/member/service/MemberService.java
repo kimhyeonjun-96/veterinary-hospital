@@ -1,14 +1,14 @@
 package com.myProject.treatment.domain.member.service;
 
-import com.myProject.treatment.domain.member.Member;
+import com.myProject.treatment.domain.member.MemberDTO;
 
 import java.util.Optional;
 
 public interface MemberService {
-    public Member join(Member member);
+    public MemberDTO signupMember(MemberDTO memberDTO);
 
-    public void validateDuplicateMember(Member member);
+    public void validateDuplicateMember(MemberDTO memberDTO);
 
-    public Optional<Member> findOne(Long memberId);
+    public Optional<MemberDTO> findOneMember(Long memberId);
 
 }

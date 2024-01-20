@@ -1,6 +1,6 @@
 package com.myProject.treatment.domain.animal;
 
-import com.myProject.treatment.domain.member.Member;
+import com.myProject.treatment.domain.member.MemberDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,16 +15,16 @@ public class Animal {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member members;
+    private MemberDTO members;
 
     public Animal() {}
 
-    public Animal(String name, int height, int weight, String type, Member member) {
+    public Animal(String name, int height, int weight, String type, MemberDTO memberDTO) {
         this.Name = name;
         this.Height = height;
         this.Weight = weight;
         this.type = type;
-        this.members = member;
+        this.members = memberDTO;
     }
 
     public Long getID() {
@@ -51,7 +51,7 @@ public class Animal {
         return type;
     }
 
-    public Member getMembers() {
+    public MemberDTO getMembers() {
         return members;
     }
 }

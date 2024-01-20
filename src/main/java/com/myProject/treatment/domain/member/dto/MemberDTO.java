@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import java.beans.ConstructorProperties;
 
-@Getter @Setter
 public class MemberDTO {
     @NotEmpty(message = "회원 아이디는 필수 입니다.")
     private String memberId;
@@ -22,7 +21,6 @@ public class MemberDTO {
 
     public MemberDTO() {}
 
-    @ConstructorProperties({"memberId", "memberPwd", "memberName", "memberPhone", "address"})
     public MemberDTO(String memberId, String memberPwd, String memberName, String memberPhone, String address) {
         this.memberId = memberId;
         this.memberPwd = memberPwd;

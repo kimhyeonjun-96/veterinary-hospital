@@ -1,13 +1,13 @@
 package com.myProject.treatment.domain.member.dao;
 
-import com.myProject.treatment.domain.member.Member;
+import com.myProject.treatment.domain.member.MemberDTO;
 
 import java.util.Optional;
 
 public interface MemberRepository {
-    Member save(Member member);
+    MemberDTO saveMember(MemberDTO memberDTO);
 
-    Optional<Member> findById(Long id);
+    Optional<MemberDTO> findById(Long id);
 
-    Optional<Member> findByMemberIdAndMemberName(String memberId, String memberName);
+    Optional<MemberDTO> findByMemberIdAndMemberName(String memberId, String memberName);
 }
