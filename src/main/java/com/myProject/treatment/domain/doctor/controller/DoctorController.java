@@ -24,12 +24,11 @@ public class DoctorController {
     /**
      * 수의사 등록
      */
-    @PostMapping("/new")
-    public ResponseEntity<?> create(@RequestBody DoctorDTO resource) throws URISyntaxException{
-        Doctor doc = doctorService.join(new Doctor(resource.getDoctor_id(), resource.getDoctor_pwd(), resource.getDoctor_name(), resource.getDoctor_phone()));
-        String url = "/doctor/" + doc.getID();
-
-        return ResponseEntity.created(new URI(url)).body(doc.getDoctor_name());
+    @PostMapping("/signup")
+    public ResponseEntity<?> signupDoctor(@RequestBody DoctorDTO resource) throws URISyntaxException{
+        DoctorDTO doc = doctorService.signupDoctor(resource);
+        String url = "/doctor/" + doc.getId();
+        return ResponseEntity.created(new URI(url)).body(doc.getDoctorName());
     }
 
     /**
@@ -37,15 +36,10 @@ public class DoctorController {
      */
     @PostMapping("/mypage")
     public ResponseEntity<?> mypage(@RequestBody Map<String, Long> request) throws URISyntaxException{
-        Long id = request.get("id");
-        Doctor doctor = doctorService.findOne(id).orElse(null);
-
-        if (doctor == null) {
-            return ResponseEntity.notFound().build();
-        }
-        String url = "/doctor/mypage" + doctor.getID();
-
-        return ResponseEntity.ok(doctor);
+        DoctorDTO oneDoctor = doctorService.findOneDoctor(request);
+        if (oneDoctor == null) return ResponseEntity.notFound().build();
+        String url = "/doctor/mypage" + oneDoctor.getId();
+        return ResponseEntity.ok(oneDoctor);
     }
 
 

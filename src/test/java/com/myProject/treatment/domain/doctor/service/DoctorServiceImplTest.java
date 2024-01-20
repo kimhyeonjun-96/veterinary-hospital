@@ -1,17 +1,15 @@
 package com.myProject.treatment.domain.doctor.service;
 
-import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
+import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import jakarta.transaction.Transactional;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Optional;
+import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
 @SpringBootTest
@@ -23,17 +21,20 @@ class DoctorServiceImplTest {
 
     @Test
     public void 수의사_회록등록(){
-        Doctor doctor = new Doctor("doc01", "doc01", "doc01", "010-9999-9999");
+        DoctorDTO doctorDTO = new DoctorDTO("doc01", "doc01", "doc01", "010-9999-9999");
 
-        Doctor joinDoctor = doctorService.join(doctor);
+        DoctorDTO joinDoctor = doctorService.signupDoctor(doctorDTO);
 
-        assertThat(joinDoctor.getID()).isEqualTo(doctor.getID());
+        assertThat(joinDoctor.getId()).isEqualTo(doctorDTO.getId());
     }
 
     @Test
     public void 수의사_마이페이지(){
-        Doctor doctor = doctorService.findOne(2L).get();
+        HashMap<String, Long> map = new HashMap<>();
+        map.put("id", 2L);
 
-        assertThat(doctor.getDoctor_name()).isEqualTo("doc01");
+        DoctorDTO doctorDTO = doctorService.findOneDoctor(map);
+
+        assertThat(doctorDTO.getDoctorName()).isEqualTo("doc01");
     }
 }

@@ -17,25 +17,22 @@ public class JpaDoctorRepository implements DoctorRepository{
     }
 
     @Override
-    public Doctor save(Doctor doctor) {
+    public Doctor saveDoctor(Doctor doctor) {
         em.persist(doctor);
-
         return doctor;
     }
 
     @Override
     public Optional<Doctor> findById(Long id) {
         Doctor doctor = em.find(Doctor.class, id);
-
         return Optional.ofNullable(doctor);
     }
 
     @Override
     public Optional<Doctor> findByDoctorId(String doctorId) {
-        List<Doctor> resultList = em.createQuery("select d from Doctor d where d.doctor_id = :doctorId", Doctor.class)
+        List<Doctor> resultList = em.createQuery("select d from Doctor d where d.doctorId = :doctorId", Doctor.class)
                 .setParameter("doctorId", doctorId)
                 .getResultList();
-
         return resultList.stream().findAny();
     }
 }
