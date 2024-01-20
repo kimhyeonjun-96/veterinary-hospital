@@ -27,7 +27,6 @@ public class Member {
     @JoinColumn(name = "treatment_id")
     private Treatment treatment;
 
-
     public Member() {}
     public Member(String memberId, String memberPwd, String memberName, String memberPhone, String address) {
         this.memberId = memberId;
