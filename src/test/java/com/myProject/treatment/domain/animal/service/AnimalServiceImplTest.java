@@ -37,6 +37,9 @@ class AnimalServiceImplTest {
             System.out.println("Pull Request Test01!!!");
             System.out.println("Pull Request Test01 커밋테스트!!!");
             System.out.println("================================");
+
+
+            System.out.println("도대체 왜 해결이 안되는거지??");
         }
     }
 
