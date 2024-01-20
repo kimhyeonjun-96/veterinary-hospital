@@ -32,6 +32,8 @@ class AnimalServiceImplTest {
 
         for(AnimalDTO animal : animalList){
             System.out.println(animal);
+
+            System.out.println("Pull Requests Test 02!!!!");
         }
     }
 
