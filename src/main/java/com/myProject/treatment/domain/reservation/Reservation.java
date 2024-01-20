@@ -13,20 +13,20 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
-
     private LocalDateTime reservation_time;
-
     @ManyToOne
     @JoinColumn(name = "animal_id")
     private Animal animal;
-
-    @OneToMany(mappedBy = "reservation")
-    private List<Doctor> doctors;
-
-    @ManyToMany(mappedBy = "treatment")
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+    @ManyToMany
+    @JoinTable(
+            name = "reservation_treatment",
+            joinColumns = @JoinColumn(name = "reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "treatment_id")
+    )
     private List<Treatment> treatments;
-
-
 
 
 }

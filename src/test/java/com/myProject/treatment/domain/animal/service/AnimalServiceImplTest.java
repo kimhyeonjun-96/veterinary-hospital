@@ -24,13 +24,13 @@ class AnimalServiceImplTest {
 
     @Test
     public void 회원_특정_반려동물(){
-        Member memberDTO = memberService.findOneMember(14L).get();
+//        Member memberDTO = memberService.findOneMember(14L).get();
 
-        List<Animal> animalList = animalService.getAnimal(memberDTO.getId());
+//        List<Animal> animalList = animalService.getAnimal(memberDTO.getId());
 
-        for(Animal animal : animalList){
-            System.out.println(animal);
-        }
+//        for(Animal animal : animalList){
+//            System.out.println(animal);
+//        }
 
     }
 

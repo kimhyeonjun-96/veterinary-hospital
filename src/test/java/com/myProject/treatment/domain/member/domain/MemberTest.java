@@ -2,6 +2,7 @@ package com.myProject.treatment.domain.member.domain;
 
 import com.myProject.treatment.domain.animal.dao.AnimalRepository;
 import com.myProject.treatment.domain.animal.Animal;
+import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.animal.service.AnimalService;
 import com.myProject.treatment.domain.member.Member;
 import com.myProject.treatment.domain.member.dao.MemberRepository;
@@ -34,19 +35,20 @@ class MemberTest {
         MemberDTO memberDTO1 = memberService.signupMember(memberDTO);
 
         // then
-        Member findMemberDTO = memberService.findOneMember(memberDTO1.getId()).get();
+        MemberDTO findMemberDTO = memberService.findOneMember(memberDTO1.getId());
         assertThat(memberDTO.getId()).isEqualTo(findMemberDTO.getId());
 
     }
 
     @Test
     public void 회원_반료동물_등록(){
-        Member memberDTO = new Member("test01", "test01", "test01", "010-1111-1111", "서울시 강동구");
+        Long memberId = 14L;
 
-        Animal animal = new Animal("test01_동물", 60, 5, "CAT", memberDTO);
-        Animal regist_animal = animalService.regist(animal, memberDTO.getId());
+        AnimalDTO animal = new AnimalDTO("test01_동물", 60, 5, "CAT", memberId);
+
+        AnimalDTO regist_animal = animalService.registAnimal(animal, memberId);
 
 
-        assertThat(animal.getMemberID()).isEqualTo(regist_animal.getMemberID());
+        assertThat(animal.getMemberId()).isEqualTo(regist_animal.getMemberId());
     }
 }

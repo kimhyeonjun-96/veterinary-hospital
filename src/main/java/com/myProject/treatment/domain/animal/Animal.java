@@ -7,8 +7,7 @@ import lombok.Getter;
 @Entity
 @Getter
 public class Animal {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private int height;
@@ -21,12 +20,12 @@ public class Animal {
 
     public Animal() {}
 
-    public Animal(String name, int height, int weight, String type, Member memberDTO) {
+    public Animal(String name, int height, int weight, String type, Member member) {
         this.name = name;
         this.height = height;
         this.weight = weight;
         this.type = type;
-        this.members = memberDTO;
+        this.members = member;
     }
 
     public Animal(Long id, String name, int height, int weight, String type, Member members) {

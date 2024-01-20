@@ -1,7 +1,10 @@
 package com.myProject.treatment.domain.doctor;
 
+import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Doctor {
@@ -15,7 +18,10 @@ public class Doctor {
     private String doctor_phone;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "treatment_id")
-    private Treatment treament;
+    private Treatment treatment;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<Reservation> reservationList;
 
     public Doctor() {}
 
@@ -47,6 +53,6 @@ public class Doctor {
     }
 
     public Treatment getTreament() {
-        return treament;
+        return treatment;
     }
 }

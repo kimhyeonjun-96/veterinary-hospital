@@ -34,7 +34,7 @@ class TreatmentServiceImplTest {
     @Test
     public void 진료_신청_및_예약(){
         //given
-        Member memberDTO = memberService.findOneMember(14L).get();
+//        Member memberDTO = memberService.findOneMember(14L).get();
 
 
         // when

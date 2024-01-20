@@ -3,6 +3,7 @@ package com.myProject.treatment.domain.treatment;
 import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.member.Member;
+import com.myProject.treatment.domain.reservation.Reservation;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -24,4 +25,7 @@ public class Treatment {
 
     @OneToMany(mappedBy = "treatment")
     private List<Doctor> doctors;
+
+    @ManyToMany(mappedBy = "treatments")
+    private List<Reservation> reservations;
 }
