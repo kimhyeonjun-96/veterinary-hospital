@@ -32,5 +32,7 @@ class DoctorServiceImplTest {
         DoctorDTO doctorDTO = doctorService.findOneDoctor(8L);
 
         assertThat(doctorDTO.getDoctorName()).isEqualTo("doc02");
+
+        System.out.println("PR 두번쨰 테스트 - 작업 단위로 나누어 진행");
     }
 }
