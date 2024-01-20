@@ -34,6 +34,7 @@ class AnimalServiceImplTest {
             System.out.println(animal);
             System.out.println("Pull Request Test01!!!");
             System.out.println("Pull Request Test01 커밋테스트!!!");
+            System.out.println("================================");
         }
     }
 
