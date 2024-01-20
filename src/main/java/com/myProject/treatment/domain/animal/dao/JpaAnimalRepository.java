@@ -16,7 +16,7 @@ public class JpaAnimalRepository implements AnimalRepository{
     }
 
     @Override
-    public Animal save(Animal animal, Long memberId) {
+    public Animal saveAnimal(Animal animal, Long memberId) {
         em.persist(animal);
 
         return animal;

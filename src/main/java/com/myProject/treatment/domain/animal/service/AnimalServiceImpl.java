@@ -5,7 +5,6 @@ import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.member.Member;
 import com.myProject.treatment.domain.member.dao.MemberRepository;
-import com.myProject.treatment.domain.member.dto.MemberDTO;
 import com.myProject.treatment.domain.member.service.MemberService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class AnimalServiceImpl implements AnimalService{
     public AnimalDTO registAnimal(AnimalDTO animalDTO, Long memberId) {
         Member member = memberRepository.findById(memberId).get();
         Animal animal = new Animal(animalDTO.getName(), animalDTO.getHeight(), animalDTO.getWeight(), animalDTO.getType(),member);
-        Animal registerAnimal = animalRepository.save(animal, memberId);
+        Animal registerAnimal = animalRepository.saveAnimal(animal, memberId);
 
         return new AnimalDTO(registerAnimal.getId(), registerAnimal.getName(), registerAnimal.getHeight(), registerAnimal.getWeight(), registerAnimal.getType(), registerAnimal.getMembers().getId());
     }

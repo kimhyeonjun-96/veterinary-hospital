@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AnimalRepository {
-    Animal save(Animal animal, Long memberId);
+    Animal saveAnimal(Animal animal, Long memberId);
 
     Optional<Animal> findById(Long id);
 
