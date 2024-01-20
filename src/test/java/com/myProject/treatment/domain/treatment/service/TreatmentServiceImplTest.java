@@ -4,7 +4,7 @@ import com.myProject.treatment.domain.animal.dao.AnimalRepository;
 import com.myProject.treatment.domain.animal.service.AnimalService;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.doctor.service.DoctorService;
-import com.myProject.treatment.domain.member.MemberDTO;
+import com.myProject.treatment.domain.member.Member;
 import com.myProject.treatment.domain.member.dao.MemberRepository;
 import com.myProject.treatment.domain.member.service.MemberService;
 import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
@@ -34,7 +34,7 @@ class TreatmentServiceImplTest {
     @Test
     public void 진료_신청_및_예약(){
         //given
-        MemberDTO memberDTO = memberService.findOneMember(14L).get();
+        Member memberDTO = memberService.findOneMember(14L).get();
 
 
         // when

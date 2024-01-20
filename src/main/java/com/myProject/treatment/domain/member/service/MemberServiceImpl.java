@@ -1,7 +1,8 @@
 package com.myProject.treatment.domain.member.service;
 
 import com.myProject.treatment.domain.member.dao.MemberRepository;
-import com.myProject.treatment.domain.member.MemberDTO;
+import com.myProject.treatment.domain.member.Member;
+import com.myProject.treatment.domain.member.dto.MemberDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,7 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public MemberDTO signupMember(MemberDTO memberDTO) {
         validateDuplicateMember(memberDTO);
-        memberRepository.saveMember(memberDTO);
-
+        memberRepository.saveMember(new Member(memberDTO.getMemberId(), memberDTO.getMemberPwd(), memberDTO.getMemberName(), memberDTO.getMemberPhone(), memberDTO.getAddress()));
         return memberDTO;
     }
 
@@ -45,7 +45,8 @@ public class MemberServiceImpl implements MemberService{
      * 회원 조회
      */
     @Override
-    public Optional<MemberDTO> findOneMember(Long memberId) {
-        return memberRepository.findById(memberId);
+    public MemberDTO findOneMember(Long memberId) {
+        Member member = memberRepository.findById(memberId).get();
+        return new MemberDTO(memberId, member.getMemberId(), member.getMemberPwd(), member.getMemberName(), member.getMemberPhone(), member.getAddress());
     }
 }

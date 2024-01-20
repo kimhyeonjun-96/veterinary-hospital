@@ -2,10 +2,12 @@ package com.myProject.treatment.domain.member;
 
 import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 @Table(name = "member")
-public class MemberDTO {
+@Getter
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,37 +28,13 @@ public class MemberDTO {
     private Treatment treatment;
 
 
-    public MemberDTO() {}
-    public MemberDTO(String memberId, String memberPwd, String memberName, String memberPhone, String address) {
+    public Member() {}
+    public Member(String memberId, String memberPwd, String memberName, String memberPhone, String address) {
         this.memberId = memberId;
         this.memberPwd = memberPwd;
         this.memberName = memberName;
         this.memberPhone = memberPhone;
         this.address = address;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public String getMemberId() {
-        return this.memberId;
-    }
-
-    public String getMemberPwd() {
-        return this.memberPwd;
-    }
-
-    public String getMemberName() {
-        return this.memberName;
-    }
-
-    public String getMemberPhone() {
-        return this.memberPhone;
-    }
-
-    public String getAddress() {
-        return this.address;
     }
 
 }

@@ -1,6 +1,6 @@
 package com.myProject.treatment.domain.member.dao;
 
-import com.myProject.treatment.domain.member.MemberDTO;
+import com.myProject.treatment.domain.member.Member;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 
@@ -16,20 +16,20 @@ public class JpaMemberRepository implements MemberRepository{
     }
 
     @Override
-    public MemberDTO saveMember(MemberDTO memberDTO) {
+    public Member saveMember(Member memberDTO) {
         em.persist(memberDTO);
         return memberDTO;
     }
 
     @Override
-    public Optional<MemberDTO> findById(Long id) {
-        MemberDTO memberDTO = em.find(MemberDTO.class, id);
+    public Optional<Member> findById(Long id) {
+        Member memberDTO = em.find(Member.class, id);
         return Optional.ofNullable(memberDTO);
     }
 
     @Override
-    public Optional<MemberDTO> findByMemberIdAndMemberName(String member_id, String member_name) {
-        List<MemberDTO> result = em.createQuery("select m from MemberDTO m where m.memberId = :member_id and m.memberName = : member_name", MemberDTO.class)
+    public Optional<Member> findByMemberIdAndMemberName(String member_id, String member_name) {
+        List<Member> result = em.createQuery("select m from Member m where m.memberId = :member_id and m.memberName = : member_name", Member.class)
                 .setParameter("member_id", member_id)
                 .setParameter("member_name", member_name)
                 .getResultList();

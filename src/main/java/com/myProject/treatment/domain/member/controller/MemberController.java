@@ -3,7 +3,8 @@ package com.myProject.treatment.domain.member.controller;
 import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.animal.service.AnimalServiceImpl;
-import com.myProject.treatment.domain.member.MemberDTO;
+import com.myProject.treatment.domain.member.Member;
+import com.myProject.treatment.domain.member.dto.MemberDTO;
 import com.myProject.treatment.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +26,9 @@ public class MemberController {
      * 회원가입
      */
     @PostMapping("/signup")
-    public ResponseEntity<?> signUpMember(@RequestBody MemberDTO resource)throws URISyntaxException{
-
-        MemberDTO addMemberDTO = memberService.signupMember(resource);
-
+    public ResponseEntity<?> signupMember(@RequestBody MemberDTO memberDTO)throws URISyntaxException{
+        MemberDTO addMemberDTO = memberService.signupMember(memberDTO);
         String url = "/members/" + addMemberDTO.getId();
-
         return ResponseEntity.created(new URI(url)).body(addMemberDTO.getMemberName());
     }
 
@@ -39,15 +37,11 @@ public class MemberController {
      * 회원 마이페이지
      */
     @PostMapping("/mypage")
-    public ResponseEntity<?> myPageMember(@RequestBody Map<String, Long> request) throws URISyntaxException{
+    public ResponseEntity<?> myPageMember(@RequestBody Map<String, Long> request){
         Long id = request.get("id");
-        MemberDTO memberDTO = memberService.findOneMember(id).orElse(null);
+        MemberDTO memberDTO = memberService.findOneMember(id);
 
-        if (memberDTO == null) {
-            return ResponseEntity.notFound().build();
-        }
-        String url = "/members/mypage" + memberDTO.getId();
-
+        if (memberDTO == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(memberDTO);
     }
 
@@ -56,7 +50,7 @@ public class MemberController {
      */
     @PostMapping("/registMyPet")
     public ResponseEntity<?> registPetMember(@RequestBody AnimalDTO resource, @RequestParam Long id)throws URISyntaxException{
-        MemberDTO memberDTO = memberService.findOneMember(id).get();
+        MemberDTO memberDTO = memberService.findOneMember(id);
         Animal animal = animalService.regist(new Animal(resource.getName(), resource.getHeight(), resource.getWeight(), resource.getTYPE(), memberDTO), memberDTO.getId());
 
         String url = "/members/" + animal.getMemberID() + "/" + animal.getName();
