@@ -32,14 +32,10 @@ class AnimalServiceImplTest {
 
         for(AnimalDTO animal : animalList){
             System.out.println(animal);
-<<<<<<< HEAD
-
             System.out.println("Pull Requests Test 02!!!!");
             System.out.println("PR02 커밋 테스트다아아아아아!!!");
-=======
             System.out.println("Pull Request Test01!!!");
             System.out.println("Pull Request Test01 커밋테스트!!!");
->>>>>>> main
         }
     }
 
