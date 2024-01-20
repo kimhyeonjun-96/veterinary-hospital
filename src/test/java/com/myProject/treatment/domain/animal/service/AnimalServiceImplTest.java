@@ -30,12 +30,7 @@ class AnimalServiceImplTest {
 
         List<AnimalDTO> animalList = animalService.getAnimalList(memberDTO.getId());
 
-<<<<<<< HEAD
         for(AnimalDTO animal : animalList){
-=======
-        // pr test!!
-        for(Animal animal : animalList){
->>>>>>> main
             System.out.println(animal);
         }
     }
