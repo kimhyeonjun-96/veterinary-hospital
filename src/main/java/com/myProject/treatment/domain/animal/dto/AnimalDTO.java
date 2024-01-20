@@ -16,6 +16,8 @@ public class AnimalDTO {
     private String type;
     private Long memberId;
 
+    public AnimalDTO() {}
+
     public AnimalDTO(String name, int height, int weight, String type, Long memberId) {
         this.name = name;
         this.height = height;

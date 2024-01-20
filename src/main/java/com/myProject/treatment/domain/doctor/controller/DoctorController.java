@@ -5,10 +5,7 @@ import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.doctor.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -34,11 +31,10 @@ public class DoctorController {
     /**
      * 수의사 마이페이지
      */
-    @PostMapping("/mypage")
-    public ResponseEntity<?> mypage(@RequestBody Map<String, Long> request) throws URISyntaxException{
-        DoctorDTO oneDoctor = doctorService.findOneDoctor(request);
+    @PostMapping("/{id}/mypage")
+    public ResponseEntity<?> mypage(@PathVariable Long id) {
+        DoctorDTO oneDoctor = doctorService.findOneDoctor(id);
         if (oneDoctor == null) return ResponseEntity.notFound().build();
-        String url = "/doctor/mypage" + oneDoctor.getId();
         return ResponseEntity.ok(oneDoctor);
     }
 

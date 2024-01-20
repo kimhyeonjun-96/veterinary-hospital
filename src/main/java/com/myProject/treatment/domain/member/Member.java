@@ -1,8 +1,11 @@
 package com.myProject.treatment.domain.member;
 
+import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
 import lombok.Getter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -23,9 +26,8 @@ public class Member {
     @Column(name = "address")
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "treatment_id")
-    private Treatment treatment;
+    @OneToMany(mappedBy = "member")
+    private List<Treatment> treatments;
 
     public Member() {}
     public Member(String memberId, String memberPwd, String memberName, String memberPhone, String address) {

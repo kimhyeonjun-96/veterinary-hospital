@@ -4,23 +4,22 @@ import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class DoctorServiceImpl implements DoctorService{
 
     private final DoctorRepository doctorRepository;
-
-    @Autowired
-    public DoctorServiceImpl(DoctorRepository doctorRepository) {
-        this.doctorRepository = doctorRepository;
-    }
-
 
     /**
      * 수의사 등록
@@ -28,10 +27,10 @@ public class DoctorServiceImpl implements DoctorService{
     @Override
     public DoctorDTO signupDoctor(DoctorDTO doctorDTO) {
         Doctor doctor = new Doctor(doctorDTO.getDoctorId(), doctorDTO.getDoctorPwd(), doctorDTO.getDoctorName(), doctorDTO.getDoctorPhone());
-
         validateDuplicateMember(doctor);
-        doctorRepository.saveDoctor(doctor);
-        return doctorDTO;
+
+        Doctor joinDoctor = doctorRepository.saveDoctor(doctor);
+        return new DoctorDTO(joinDoctor.getId(), joinDoctor.getDoctorId(), joinDoctor.getDoctorPwd(), joinDoctor.getDoctorName(), joinDoctor.getDoctorPhone());
     }
 
     /**
@@ -48,9 +47,25 @@ public class DoctorServiceImpl implements DoctorService{
      * 수의사 확인
      */
     @Override
-    public DoctorDTO findOneDoctor(Map<String, Long> request) {
-        Long doctorId = request.get("id");
+    public DoctorDTO findOneDoctor(Long doctorId) {
         Doctor doctor = doctorRepository.findById(doctorId).get();
         return new DoctorDTO(doctor.getId(), doctor.getDoctorId(), doctor.getDoctorPwd(), doctor.getDoctorName(), doctor.getDoctorPhone(), doctor.getTreatment(), doctor.getReservationList());
     }
+
+    /**
+     * 모든 수의사 확인
+     */
+    @Override
+    public List<DoctorDTO> findAllDoctor() {
+        List<Doctor> allDoctor = doctorRepository.findAllDoctor();
+        List<DoctorDTO> doctorDTOList = new ArrayList<>();
+        for(Doctor doctor : allDoctor) {
+            doctorDTOList.add(new DoctorDTO(doctor.getId(), doctor.getDoctorId(), doctor.getDoctorPwd(), doctor.getDoctorName(), doctor.getDoctorPhone(), doctor.getTreatment(), doctor.getReservationList()));
+        }
+        return doctorDTOList;
+    }
+
+    /**
+     * 예약된 진료 시간 리스트
+     */
 }

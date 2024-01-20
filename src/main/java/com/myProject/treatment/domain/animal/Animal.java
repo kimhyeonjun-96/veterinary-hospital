@@ -1,8 +1,11 @@
 package com.myProject.treatment.domain.animal;
 
 import com.myProject.treatment.domain.member.Member;
+import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
 import lombok.Getter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,6 +20,9 @@ public class Animal {
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member members;
+
+    @OneToMany(mappedBy = "animal")
+    private List<Treatment> treatmentList;
 
     public Animal() {}
 

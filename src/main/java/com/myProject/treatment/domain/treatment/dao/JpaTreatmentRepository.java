@@ -13,9 +13,8 @@ public class JpaTreatmentRepository implements TreatmentRepository{
     }
 
     @Override
-    public Treatment save(Treatment treatment) {
+    public Treatment saveTreatment(Treatment treatment) {
         em.persist(treatment);
-
         return treatment;
     }
 }

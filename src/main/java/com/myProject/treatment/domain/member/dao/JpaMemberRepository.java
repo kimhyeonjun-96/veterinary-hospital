@@ -16,15 +16,15 @@ public class JpaMemberRepository implements MemberRepository{
     }
 
     @Override
-    public Member saveMember(Member memberDTO) {
-        em.persist(memberDTO);
-        return memberDTO;
+    public Member saveMember(Member member) {
+        em.persist(member);
+        return member;
     }
 
     @Override
     public Optional<Member> findById(Long id) {
-        Member memberDTO = em.find(Member.class, id);
-        return Optional.ofNullable(memberDTO);
+        Member member = em.find(Member.class, id);
+        return Optional.ofNullable(member);
     }
 
     @Override

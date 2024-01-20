@@ -7,6 +7,7 @@ import com.myProject.treatment.domain.member.Member;
 import com.myProject.treatment.domain.member.dao.MemberRepository;
 import com.myProject.treatment.domain.member.service.MemberService;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +16,12 @@ import java.util.List;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AnimalServiceImpl implements AnimalService{
 
     private final AnimalRepository animalRepository;
-    private final MemberService memberService;
     private final MemberRepository memberRepository;
 
-    @Autowired
-    public AnimalServiceImpl(AnimalRepository animalRepository, MemberService memberService, MemberRepository memberRepository) {
-        this.animalRepository = animalRepository;
-        this.memberService = memberService;
-        this.memberRepository = memberRepository;
-    }
 
     /**
      * 회원 반려동물 등록
@@ -45,7 +40,7 @@ public class AnimalServiceImpl implements AnimalService{
      * 회원의 특정 반려동물 확인
      */
     @Override
-    public List<AnimalDTO> getAnimal(Long memberId) {
+    public List<AnimalDTO> getAnimalList(Long memberId) {
         List<Animal> animalList = animalRepository.findByMemberId(memberId);
         List<AnimalDTO> getAnimalListDTO = new ArrayList<>();
 
@@ -54,5 +49,13 @@ public class AnimalServiceImpl implements AnimalService{
         }
 
         return getAnimalListDTO;
+    }
+
+    /**
+     * 진료 받을 반려동물 선택
+     */
+    @Override
+    public AnimalDTO selectAnimal(Long animalId) {
+        return null;
     }
 }

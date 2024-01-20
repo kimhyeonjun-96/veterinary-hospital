@@ -12,8 +12,9 @@ import java.util.List;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
-    private LocalDateTime reservation_time;
+    private Long id;
+    private LocalDateTime reservationStartTime;
+    private LocalDateTime reservationEndTime;
     @ManyToOne
     @JoinColumn(name = "animal_id")
     private Animal animal;
@@ -27,6 +28,5 @@ public class Reservation {
             inverseJoinColumns = @JoinColumn(name = "treatment_id")
     )
     private List<Treatment> treatments;
-
 
 }

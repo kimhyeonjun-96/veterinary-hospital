@@ -1,5 +1,6 @@
 package com.myProject.treatment.domain.doctor.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.validation.constraints.NotEmpty;
@@ -20,8 +21,17 @@ public class DoctorDTO {
     private Treatment treatment;
     private List<Reservation> reservationList;
 
+    public DoctorDTO() {}
 
     public DoctorDTO(String doctorId, String doctorPwd, String doctorName, String doctorPhone) {
+        this.doctorId = doctorId;
+        this.doctorPwd = doctorPwd;
+        this.doctorName = doctorName;
+        this.doctorPhone = doctorPhone;
+    }
+
+    public DoctorDTO(Long id, String doctorId, String doctorPwd, String doctorName, String doctorPhone) {
+        this.id = id;
         this.doctorId = doctorId;
         this.doctorPwd = doctorPwd;
         this.doctorName = doctorName;

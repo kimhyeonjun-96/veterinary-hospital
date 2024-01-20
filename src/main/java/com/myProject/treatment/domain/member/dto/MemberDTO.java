@@ -1,11 +1,10 @@
 package com.myProject.treatment.domain.member.dto;
 
-import com.myProject.treatment.domain.treatment.Treatment;
+import com.myProject.treatment.domain.reservation.Reservation;
+import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
+import com.myProject.treatment.domain.treatment.dto.TreatmentDTO;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
-import lombok.Setter;
-
-import java.beans.ConstructorProperties;
 
 @Getter
 public class MemberDTO {
@@ -18,7 +17,7 @@ public class MemberDTO {
     private String memberName;
     private String memberPhone;
     private String address;
-    private Treatment treatment;
+    private TreatmentDTO treatmentDTO;
 
     public MemberDTO() {}
 

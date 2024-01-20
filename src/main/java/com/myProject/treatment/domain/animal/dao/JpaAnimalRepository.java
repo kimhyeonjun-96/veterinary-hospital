@@ -30,7 +30,7 @@ public class JpaAnimalRepository implements AnimalRepository{
 
     @Override
     public List<Animal> findByMemberId(Long memberId) {
-        List<Animal> result = em.createQuery("select a from Animal a where a.MemberID = :memberId", Animal.class)
+        List<Animal> result = em.createQuery("select a from Animal a where a.members.id = :memberId", Animal.class)
                 .setParameter("memberId", memberId)
                 .getResultList();
 

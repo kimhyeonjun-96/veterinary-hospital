@@ -21,20 +21,16 @@ class DoctorServiceImplTest {
 
     @Test
     public void 수의사_회록등록(){
-        DoctorDTO doctorDTO = new DoctorDTO("doc01", "doc01", "doc01", "010-9999-9999");
+        DoctorDTO doctorDTO = new DoctorDTO("doc02", "doc02", "doc02", "010-8888-8888");
 
         DoctorDTO joinDoctor = doctorService.signupDoctor(doctorDTO);
-
-        assertThat(joinDoctor.getId()).isEqualTo(doctorDTO.getId());
+        assertThat(joinDoctor.getDoctorId()).isEqualTo(doctorDTO.getDoctorId());
     }
 
     @Test
     public void 수의사_마이페이지(){
-        HashMap<String, Long> map = new HashMap<>();
-        map.put("id", 2L);
+        DoctorDTO doctorDTO = doctorService.findOneDoctor(8L);
 
-        DoctorDTO doctorDTO = doctorService.findOneDoctor(map);
-
-        assertThat(doctorDTO.getDoctorName()).isEqualTo("doc01");
+        assertThat(doctorDTO.getDoctorName()).isEqualTo("doc02");
     }
 }
