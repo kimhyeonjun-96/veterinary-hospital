@@ -91,7 +91,7 @@ public class MemberController {
      */
     @PostMapping("/{id}/createReservation")
     public ResponseEntity<?> createReservationMember(
-            @PathVariable java.lang.Long id,
+            @PathVariable Long id,
             @RequestBody CreateReservationRequest request)throws URISyntaxException{
         ReservationDTO reservation = reservationService.createReservation(id, request.getTreatmentDTO(), request.getSelectStartTime(), request.getSelectEndTime());
 

@@ -4,10 +4,14 @@ import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Getter
+@RequiredArgsConstructor
 @Entity
 public class Reservation {
     @Id
@@ -29,4 +33,19 @@ public class Reservation {
     )
     private List<Treatment> treatments;
 
+    public Reservation(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctor, List<Treatment> treatments) {
+        this.id = id;
+        this.reservationStartTime = reservationStartTime;
+        this.reservationEndTime = reservationEndTime;
+        this.animal = animal;
+        this.doctor = doctor;
+        this.treatments = treatments;
+    }
+
+    public Reservation(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctor) {
+        this.reservationStartTime = reservationStartTime;
+        this.reservationEndTime = reservationEndTime;
+        this.animal = animal;
+        this.doctor = doctor;
+    }
 }

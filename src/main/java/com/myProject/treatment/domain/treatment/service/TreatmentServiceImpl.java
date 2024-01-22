@@ -28,13 +28,10 @@ public class TreatmentServiceImpl implements TreatmentService{
     private final DoctorRepository doctorRepository;
 
     @Override
-    public TreatmentDTO createTreatment(TreatmentDTO treatmentDTO) {
-        Member member = memberRepository.findById(treatmentDTO.getMemberId()).get();
+    public Treatment createTreatment(Long memberId, TreatmentDTO treatmentDTO) {
+        Member member = memberRepository.findById(memberId).get();
         Animal animal = animalRepository.findById(treatmentDTO.getAnimalId()).get();
         Doctor doctor = doctorRepository.findById(treatmentDTO.getDoctorId()).get();
-
-        Treatment saveTreatment = treatmentRepository.saveTreatment(new Treatment(treatmentDTO.getPurpose(), member, animal, doctor));
-
-        return new TreatmentDTO(saveTreatment.getId(), saveTreatment.getPurpose(), treatmentDTO.getMemberId(), treatmentDTO.getAnimalId(), treatmentDTO.getDoctorId());
+        return treatmentRepository.saveTreatment(new Treatment(treatmentDTO.getPurpose(), member, animal, doctor));
     }
 }

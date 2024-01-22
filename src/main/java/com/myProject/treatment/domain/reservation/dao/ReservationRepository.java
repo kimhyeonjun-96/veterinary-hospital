@@ -1,7 +1,9 @@
 package com.myProject.treatment.domain.reservation.dao;
 
 import com.myProject.treatment.domain.reservation.Reservation;
-import jakarta.persistence.EntityManager;
+import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
+import com.myProject.treatment.domain.treatment.Treatment;
+import jakarta.persistence.Tuple;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,7 +11,9 @@ import java.util.Optional;
 
 public interface ReservationRepository {
 
-    Optional<Reservation> findById(Long id);
+    public Optional<Reservation> findById(Long id);
 
-    List<LocalDateTime> findByDoctorIdReservationTime(Long doctorId);
+    public List<ReservationDTO> findByDoctorIdReservationTime(Long doctorId);
+
+    public Reservation saveTheReservation(Reservation reservation);
 }

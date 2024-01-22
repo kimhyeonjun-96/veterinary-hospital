@@ -1,6 +1,8 @@
 package com.myProject.treatment.domain.treatment.dto;
 
+import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
+import com.myProject.treatment.domain.member.dto.MemberDTO;
 import lombok.Getter;
 
 @Getter

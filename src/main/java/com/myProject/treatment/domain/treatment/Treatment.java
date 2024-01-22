@@ -41,4 +41,11 @@ public class Treatment {
         this.animal = animal;
         this.doctor = doctor;
     }
+    public Treatment(Long id, String purpose, Member member, Animal animal, Doctor doctor) {
+        this.id = id;
+        this.purpose = purpose;
+        this.member = member;
+        this.animal = animal;
+        this.doctor = doctor;
+    }
 }

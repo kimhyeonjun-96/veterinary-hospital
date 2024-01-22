@@ -1,12 +1,17 @@
 package com.myProject.treatment.domain.reservation.dao;
 
 import com.myProject.treatment.domain.reservation.Reservation;
+import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
+import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Tuple;
+import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Repository
@@ -26,9 +31,17 @@ public class JpaReservationRepository implements ReservationRepository{
     }
 
     @Override
-    public List<LocalDateTime> findByDoctorIdReservationTime(Long doctorId) {
-       return em.createQuery("select r.reservationStartTime, r.reservationEndTime from Reservation r where r.doctor.id = :doctorId", LocalDateTime.class)
+    public List<ReservationDTO> findByDoctorIdReservationTime(@Param("doctorId") Long doctorId) {
+        return em.createQuery("SELECT r.reservationStartTime, r.reservationEndTime FROM Reservation r WHERE r.doctor.id = :doctorId", ReservationDTO.class)
                 .setParameter("doctorId", doctorId)
                 .getResultList();
     }
+
+    @Transactional
+    @Override
+    public Reservation saveTheReservation(Reservation reservation) {
+        em.persist(reservation);
+        return reservation;
+    }
+
 }

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TreatmentService {
     // 진료 생성 및 예약 생성
-    TreatmentDTO createTreatment(TreatmentDTO treatmentDTO);
+    Treatment createTreatment(Long memberId, TreatmentDTO treatmentDTO);
 
     // 회원의 진료 기록들 확인
 
