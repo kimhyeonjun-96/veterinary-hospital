@@ -20,11 +20,12 @@ public class Doctor {
     private String doctorPwd;
     private String doctorName;
     private String doctorPhone;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "treatment_id")
-    private Treatment treatment;
+
     @OneToMany(mappedBy = "doctor")
-    private List<Reservation> reservationList;
+    private List<Treatment> treatments;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<Reservation> reservations;
 
     public Doctor(String doctorId, String doctorPwd, String doctorName, String doctor_phone) {
         this.doctorId = doctorId;
@@ -32,4 +33,6 @@ public class Doctor {
         this.doctorName = doctorName;
         this.doctorPhone = doctor_phone;
     }
+
+
 }

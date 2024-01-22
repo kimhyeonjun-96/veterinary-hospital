@@ -32,6 +32,6 @@ public class TreatmentServiceImpl implements TreatmentService{
         Member member = memberRepository.findById(memberId).get();
         Animal animal = animalRepository.findById(treatmentDTO.getAnimalId()).get();
         Doctor doctor = doctorRepository.findById(treatmentDTO.getDoctorId()).get();
-        return treatmentRepository.saveTreatment(new Treatment(treatmentDTO.getPurpose(), member, animal, doctor));
+        return treatmentRepository.saveTreatment(new Treatment(treatmentDTO.getPurpose(), member.getId(), animal.getId(), doctor));
     }
 }

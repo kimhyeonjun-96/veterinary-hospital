@@ -1,6 +1,5 @@
 package com.myProject.treatment.domain.member;
 
-import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,8 +25,7 @@ public class Member {
     @Column(name = "address")
     private String address;
 
-    @OneToMany(mappedBy = "member")
-    private List<Treatment> treatments;
+    private Long treatmentId;
 
     public Member() {}
     public Member(String memberId, String memberPwd, String memberName, String memberPhone, String address) {

@@ -96,7 +96,9 @@ public class MemberController {
         ReservationDTO reservation = reservationService.createReservation(id, request.getTreatmentDTO(), request.getSelectStartTime(), request.getSelectEndTime());
 
         String url = "/members/" + id;
-
-        return ResponseEntity.created(new URI(url)).body("{}");
+        if(reservation != null)
+            return ResponseEntity.created(new URI(url)).body(reservation);
+        else
+            return ResponseEntity.created(new URI(url)).body("예약하지 못 했습니다.");
     }
 }

@@ -21,9 +21,6 @@ public class Animal {
     @JoinColumn(name = "member_id")
     private Member members;
 
-    @OneToMany(mappedBy = "animal")
-    private List<Treatment> treatmentList;
-
     public Animal() {}
 
     public Animal(String name, int height, int weight, String type, Member member) {

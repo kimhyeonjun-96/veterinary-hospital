@@ -18,6 +18,7 @@ public interface DoctorService {
     // 모든 수의사 조회
     public List<DoctorDTO> findAllDoctor();
 
-    // 수의사 진료예약 시간들
+    // 수의사 진료 추가
+    public DoctorDTO addTreamentToDoctor(Long doctorId, Long treatmentId);
 
 }

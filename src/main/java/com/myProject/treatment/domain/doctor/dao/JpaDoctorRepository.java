@@ -41,4 +41,5 @@ public class JpaDoctorRepository implements DoctorRepository{
         return em.createQuery("select d from Doctor d", Doctor.class)
                 .getResultList();
     }
+
 }

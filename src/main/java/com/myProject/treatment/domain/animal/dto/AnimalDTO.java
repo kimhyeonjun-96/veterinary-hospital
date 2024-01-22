@@ -2,8 +2,10 @@ package com.myProject.treatment.domain.animal.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
+@RequiredArgsConstructor
 public class AnimalDTO {
 
     private Long id;
@@ -13,8 +15,6 @@ public class AnimalDTO {
     private int weight;
     private String type;
     private Long memberId;
-
-    public AnimalDTO() {}
 
     public AnimalDTO(String name, int height, int weight, String type, Long memberId) {
         this.name = name;

@@ -1,13 +1,9 @@
 package com.myProject.treatment.domain.reservation.dto;
 
-import com.myProject.treatment.domain.animal.Animal;
-import com.myProject.treatment.domain.doctor.Doctor;
-import com.myProject.treatment.domain.treatment.Treatment;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
@@ -15,29 +11,29 @@ public class ReservationDTO {
     private Long id;
     private LocalDateTime reservationStartTime;
     private LocalDateTime reservationEndTime;
-    private Long animal;
-    private Long doctor;
-    private List<Long> treatments;
+    private Long animalId;
+    private Long doctorId;
+    private Long treatmentId;
 
     public ReservationDTO(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime) {
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
     }
 
-    public ReservationDTO(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Long animal, Long doctor) {
+    public ReservationDTO(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Long animalId, Long doctorId) {
         this.id = id;
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
-        this.animal = animal;
-        this.doctor = doctor;
+        this.animalId = animalId;
+        this.doctorId = doctorId;
     }
 
-    public ReservationDTO(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Long animalId, Long doctorId, List<Long> treatments) {
+    public ReservationDTO(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Long animalId, Long doctorId, Long treatmentId) {
         this.id = id;
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
-        this.animal = animalId;
-        this.doctor = doctorId;
-        this.treatments = treatments;
+        this.animalId = animalId;
+        this.doctorId = doctorId;
+        this.treatmentId = treatmentId;
     }
 }

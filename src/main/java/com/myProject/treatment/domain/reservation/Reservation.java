@@ -2,13 +2,11 @@ package com.myProject.treatment.domain.reservation;
 
 import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.doctor.Doctor;
-import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
@@ -25,27 +23,29 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
-    @ManyToMany
-    @JoinTable(
-            name = "reservation_treatment",
-            joinColumns = @JoinColumn(name = "reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "treatment_id")
-    )
-    private List<Treatment> treatments;
+    private Long treatmentId;
 
-    public Reservation(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctor, List<Treatment> treatments) {
+    public Reservation(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctor, Long treatmentId) {
         this.id = id;
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
         this.animal = animal;
         this.doctor = doctor;
-        this.treatments = treatments;
+        this.treatmentId = treatmentId;
     }
 
-    public Reservation(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctor) {
+    public Reservation(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctorId) {
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
         this.animal = animal;
         this.doctor = doctor;
+    }
+
+    public Reservation(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctor, Long treatmentId) {
+        this.reservationStartTime = reservationStartTime;
+        this.reservationEndTime = reservationEndTime;
+        this.animal = animal;
+        this.doctor = doctor;
+        this.treatmentId = treatmentId;
     }
 }

@@ -2,6 +2,7 @@ package com.myProject.treatment.domain.doctor.dao;
 
 import com.myProject.treatment.domain.doctor.Doctor;
 
+import javax.print.Doc;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,4 +16,6 @@ public interface DoctorRepository {
     Optional<Doctor> findByDoctorId(String doctorId);
 
     List<Doctor> findAllDoctor();
+
+
 }

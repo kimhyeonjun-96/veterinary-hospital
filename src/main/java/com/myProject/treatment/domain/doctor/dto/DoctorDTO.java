@@ -4,10 +4,12 @@ import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @Getter
+@RequiredArgsConstructor
 public class DoctorDTO {
 
     private Long id;
@@ -17,10 +19,8 @@ public class DoctorDTO {
     @NotEmpty(message = "수의사님 이름은 필수 입니다.")
     private String doctorName;
     private String doctorPhone;
-    private Treatment treatment;
-    private List<Reservation> reservationList;
-
-    public DoctorDTO() {}
+    private List<Treatment> treatments;
+    private List<Reservation> reservations;
 
     public DoctorDTO(String doctorId, String doctorPwd, String doctorName, String doctorPhone) {
         this.doctorId = doctorId;
@@ -37,22 +37,22 @@ public class DoctorDTO {
         this.doctorPhone = doctorPhone;
     }
 
-    public DoctorDTO(String doctorId, String doctorPwd, String doctorName, String doctorPhone, Treatment treatment, List<Reservation> reservationList) {
+    public DoctorDTO(String doctorId, String doctorPwd, String doctorName, String doctorPhone, List<Treatment> treatments, List<Reservation> reservations) {
         this.doctorId = doctorId;
         this.doctorPwd = doctorPwd;
         this.doctorName = doctorName;
         this.doctorPhone = doctorPhone;
-        this.treatment = treatment;
-        this.reservationList = reservationList;
+        this.treatments = treatments;
+        this.reservations = reservations;
     }
 
-    public DoctorDTO(Long id, String doctorId, String doctorPwd, String doctorName, String doctorPhone, Treatment treatment, List<Reservation> reservationList) {
+    public DoctorDTO(Long id, String doctorId, String doctorPwd, String doctorName, String doctorPhone, List<Treatment> treatments, List<Reservation> reservations) {
         this.id = id;
         this.doctorId = doctorId;
         this.doctorPwd = doctorPwd;
         this.doctorName = doctorName;
         this.doctorPhone = doctorPhone;
-        this.treatment = treatment;
-        this.reservationList = reservationList;
+        this.treatments = treatments;
+        this.reservations = reservations;
     }
 }

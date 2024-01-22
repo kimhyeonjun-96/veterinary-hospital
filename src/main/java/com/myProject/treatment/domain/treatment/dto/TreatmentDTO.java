@@ -4,8 +4,10 @@ import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.member.dto.MemberDTO;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
+@RequiredArgsConstructor
 public class TreatmentDTO {
 
     private Long id;
@@ -14,8 +16,6 @@ public class TreatmentDTO {
     private Long memberId;
     private Long animalId;
     private Long doctorId;
-
-    public TreatmentDTO() {}
 
     public TreatmentDTO(String purpose, Long memberId, Long animalId, Long doctorId) {
         this.purpose = purpose;
