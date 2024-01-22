@@ -1,11 +1,7 @@
 package com.myProject.treatment.domain.treatment.dto;
 
-import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
-import com.myProject.treatment.domain.member.dto.MemberDTO;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
 
 @Getter
 public class TreatmentDTO {
@@ -13,30 +9,30 @@ public class TreatmentDTO {
     private Long id;
     private String purpose;
 
-    private MemberDTO memberDTO;
-    private AnimalDTO animal;
-    private DoctorDTO doctor;
+    private Long memberId;
+    private Long animalId;
+    private Long doctorId;
 
     public TreatmentDTO() {}
 
-    public TreatmentDTO(String purpose, MemberDTO memberDTO, AnimalDTO animal, DoctorDTO doctor) {
+    public TreatmentDTO(String purpose, Long memberId, Long animalId, Long doctorId) {
         this.purpose = purpose;
-        this.memberDTO = memberDTO;
-        this.animal = animal;
-        this.doctor = doctor;
+        this.memberId = memberId;
+        this.animalId = animalId;
+        this.doctorId = doctorId;
     }
 
-    public TreatmentDTO(String purpose,  AnimalDTO animal, DoctorDTO doctor) {
+    public TreatmentDTO(String purpose, Long animalId, Long doctorId) {
         this.purpose = purpose;
-        this.animal = animal;
-        this.doctor = doctor;
+        this.animalId = animalId;
+        this.doctorId = doctorId;
     }
 
-    public TreatmentDTO(Long id, String purpose, MemberDTO memberDTO, AnimalDTO animal, DoctorDTO doctor) {
+    public TreatmentDTO(Long id, String purpose, Long memberId, Long animalId, Long doctorId) {
         this.id = id;
         this.purpose = purpose;
-        this.memberDTO = memberDTO;
-        this.animal = animal;
-        this.doctor = doctor;
+        this.memberId = memberId;
+        this.animalId = animalId;
+        this.doctorId = doctorId;
     }
 }

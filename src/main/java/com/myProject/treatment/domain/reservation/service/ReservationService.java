@@ -1,6 +1,5 @@
 package com.myProject.treatment.domain.reservation.service;
 
-import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
 import com.myProject.treatment.domain.treatment.dto.TreatmentDTO;

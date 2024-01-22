@@ -2,7 +2,6 @@ package com.myProject.treatment.domain.reservation.service;
 
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
-import com.myProject.treatment.domain.doctor.service.DoctorService;
 import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.reservation.dao.ReservationRepository;
 import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
@@ -12,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -30,7 +28,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public ReservationDTO createReservation(Long memberId, TreatmentDTO treatmentDTO, LocalDateTime selectStartTime, LocalDateTime selectEndTime) {
-        Doctor doctor = doctorRepository.findById(treatmentDTO.getDoctor().getId()).get();
+        Doctor doctor = doctorRepository.findById(treatmentDTO.getDoctorId()).get();
 
         // 선택한 시간 가능한지 확인
         if(checkReservationTime(doctor.getId(), selectStartTime, selectEndTime)){

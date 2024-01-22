@@ -1,7 +1,5 @@
 package com.myProject.treatment.domain.animal.dto;
 
-import com.myProject.treatment.domain.member.Member;
-import com.myProject.treatment.domain.member.dto.MemberDTO;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 

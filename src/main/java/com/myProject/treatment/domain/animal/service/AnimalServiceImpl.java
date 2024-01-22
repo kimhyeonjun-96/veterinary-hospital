@@ -5,10 +5,8 @@ import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.member.Member;
 import com.myProject.treatment.domain.member.dao.MemberRepository;
-import com.myProject.treatment.domain.member.service.MemberService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,9 +26,9 @@ public class AnimalServiceImpl implements AnimalService{
      * 회원 추가적인 반려동물 등록
      */
     @Override
-    public AnimalDTO registAnimal(AnimalDTO animalDTO, Long memberId) {
+    public AnimalDTO registAnimal(AnimalDTO aAnimalDTO, java.lang.Long memberId) {
         Member member = memberRepository.findById(memberId).get();
-        Animal animal = new Animal(animalDTO.getName(), animalDTO.getHeight(), animalDTO.getWeight(), animalDTO.getType(),member);
+        Animal animal = new Animal(aAnimalDTO.getName(), aAnimalDTO.getHeight(), aAnimalDTO.getWeight(), aAnimalDTO.getType(),member);
         Animal registerAnimal = animalRepository.saveAnimal(animal, memberId);
 
         return new AnimalDTO(registerAnimal.getId(), registerAnimal.getName(), registerAnimal.getHeight(), registerAnimal.getWeight(), registerAnimal.getType(), registerAnimal.getMembers().getId());
@@ -40,7 +38,7 @@ public class AnimalServiceImpl implements AnimalService{
      * 회원의 특정 반려동물 확인
      */
     @Override
-    public List<AnimalDTO> getAnimalList(Long memberId) {
+    public List<AnimalDTO> getAnimalList(java.lang.Long memberId) {
         List<Animal> animalList = animalRepository.findByMemberId(memberId);
         List<AnimalDTO> getAnimalListDTO = new ArrayList<>();
 
@@ -55,7 +53,7 @@ public class AnimalServiceImpl implements AnimalService{
      * 진료 받을 반려동물 선택
      */
     @Override
-    public AnimalDTO selectAnimal(Long animalId) {
+    public AnimalDTO selectAnimal(java.lang.Long animalId) {
         return null;
     }
 }

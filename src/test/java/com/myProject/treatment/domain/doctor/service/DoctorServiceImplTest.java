@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-
 import static org.assertj.core.api.Assertions.*;
 
 @Transactional
@@ -21,18 +19,16 @@ class DoctorServiceImplTest {
 
     @Test
     public void 수의사_회록등록(){
-        DoctorDTO doctorDTO = new DoctorDTO("doc02", "doc02", "doc02", "010-8888-8888");
+        DoctorDTO aDoctorDTO = new DoctorDTO("doc02", "doc02", "doc02", "010-8888-8888");
 
-        DoctorDTO joinDoctor = doctorService.signupDoctor(doctorDTO);
-        assertThat(joinDoctor.getDoctorId()).isEqualTo(doctorDTO.getDoctorId());
+        DoctorDTO joinDoctor = doctorService.signupDoctor(aDoctorDTO);
+        assertThat(joinDoctor.getDoctorId()).isEqualTo(aDoctorDTO.getDoctorId());
     }
 
     @Test
     public void 수의사_마이페이지(){
-        DoctorDTO doctorDTO = doctorService.findOneDoctor(8L);
+        DoctorDTO aDoctorDTO = doctorService.findOneDoctor(8L);
 
-        assertThat(doctorDTO.getDoctorName()).isEqualTo("doc02");
-
-        System.out.println("PR 두번쨰 테스트 - 작업 단위로 나누어 진행");
+        assertThat(aDoctorDTO.getDoctorName()).isEqualTo("doc02");
     }
 }

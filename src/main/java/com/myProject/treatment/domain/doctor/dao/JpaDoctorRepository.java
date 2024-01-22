@@ -1,11 +1,9 @@
 package com.myProject.treatment.domain.doctor.dao;
 
 import com.myProject.treatment.domain.doctor.Doctor;
-import com.myProject.treatment.domain.reservation.Reservation;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 

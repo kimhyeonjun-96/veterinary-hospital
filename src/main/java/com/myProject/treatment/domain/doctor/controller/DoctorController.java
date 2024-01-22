@@ -1,6 +1,5 @@
 package com.myProject.treatment.domain.doctor.controller;
 
-import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.doctor.service.DoctorService;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/doctor")
@@ -32,7 +30,7 @@ public class DoctorController {
      * 수의사 마이페이지
      */
     @PostMapping("/{id}/mypage")
-    public ResponseEntity<?> mypage(@PathVariable Long id) {
+    public ResponseEntity<?> mypage(@PathVariable java.lang.Long id) {
         DoctorDTO oneDoctor = doctorService.findOneDoctor(id);
         if (oneDoctor == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(oneDoctor);

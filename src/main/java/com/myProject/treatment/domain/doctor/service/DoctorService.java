@@ -3,12 +3,11 @@ package com.myProject.treatment.domain.doctor.service;
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DoctorService {
     // 수의사 회원가입
-    public DoctorDTO signupDoctor(DoctorDTO doctorDTO);
+    public DoctorDTO signupDoctor(DoctorDTO aDoctorDTO);
 
     // 수의사 아이디 중복 검사
     public void validateDuplicateMember(Doctor doctor);

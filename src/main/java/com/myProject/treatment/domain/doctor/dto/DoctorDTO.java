@@ -1,6 +1,5 @@
 package com.myProject.treatment.domain.doctor.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.validation.constraints.NotEmpty;

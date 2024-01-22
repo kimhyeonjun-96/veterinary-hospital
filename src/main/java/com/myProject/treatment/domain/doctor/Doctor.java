@@ -4,11 +4,13 @@ import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@Entity
+@RequiredArgsConstructor
 @Getter
+@Entity
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +25,6 @@ public class Doctor {
     private Treatment treatment;
     @OneToMany(mappedBy = "doctor")
     private List<Reservation> reservationList;
-
-    public Doctor() {}
 
     public Doctor(String doctorId, String doctorPwd, String doctorName, String doctor_phone) {
         this.doctorId = doctorId;

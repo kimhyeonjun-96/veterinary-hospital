@@ -1,7 +1,5 @@
 package com.myProject.treatment.domain.member.dto;
 
-import com.myProject.treatment.domain.reservation.Reservation;
-import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
 import com.myProject.treatment.domain.treatment.dto.TreatmentDTO;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;

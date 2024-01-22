@@ -7,11 +7,13 @@ import com.myProject.treatment.domain.member.Member;
 import com.myProject.treatment.domain.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@Entity
 @Getter
+@RequiredArgsConstructor
+@Entity
 public class Treatment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
