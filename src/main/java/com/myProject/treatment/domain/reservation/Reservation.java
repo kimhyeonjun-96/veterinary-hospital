@@ -4,12 +4,10 @@ import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.doctor.Doctor;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
-@RequiredArgsConstructor
 @Entity
 public class Reservation {
     @Id
@@ -24,6 +22,8 @@ public class Reservation {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
     private Long treatmentId;
+
+    public Reservation() {}
 
     public Reservation(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctor, Long treatmentId) {
         this.id = id;
