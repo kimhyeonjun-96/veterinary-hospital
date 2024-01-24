@@ -11,14 +11,13 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl{
 
     private final MemberRepository memberRepository;
 
     /**
      *회원가입
      */
-    @Override
     public MemberDTO signupMember(MemberDTO aMemberDTO) {
         validateDuplicateMember(aMemberDTO);
         memberRepository.saveMember(new Member(aMemberDTO.getMemberId(), aMemberDTO.getMemberPwd(), aMemberDTO.getMemberName(), aMemberDTO.getMemberPhone(), aMemberDTO.getAddress()));
@@ -28,7 +27,6 @@ public class MemberServiceImpl implements MemberService{
     /**
      *회원가입 시 중복회원 검증
      */
-    @Override
     public void validateDuplicateMember(MemberDTO aMemberDTO) {
         memberRepository.findByMemberIdAndMemberName(aMemberDTO.getMemberId(), aMemberDTO.getMemberName()).ifPresent(m -> {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
@@ -38,7 +36,6 @@ public class MemberServiceImpl implements MemberService{
     /**
      * 회원 조회
      */
-    @Override
     public MemberDTO findOneMember(java.lang.Long memberId) {
         Member member = memberRepository.findById(memberId).get();
         return new MemberDTO(memberId, member.getMemberId(), member.getMemberPwd(), member.getMemberName(), member.getMemberPhone(), member.getAddress());
@@ -47,7 +44,6 @@ public class MemberServiceImpl implements MemberService{
     /**
      * 진료 예약을 위한 회원 존재여부 확인
      */
-    @Override
     public boolean authenticateMember(java.lang.Long memberId) {
         Member member = memberRepository.findById(memberId).get();
 

@@ -15,37 +15,33 @@ public class Reservation {
     private Long id;
     private LocalDateTime reservationStartTime;
     private LocalDateTime reservationEndTime;
-    @ManyToOne
-    @JoinColumn(name = "animal_id")
-    private Animal animal;
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
+    private Long animalId;
+    private Long doctorId;
     private Long treatmentId;
 
     public Reservation() {}
 
-    public Reservation(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctor, Long treatmentId) {
+    public Reservation(Long id, LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Long animalId, Long doctorId, Long treatmentId) {
         this.id = id;
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
-        this.animal = animal;
-        this.doctor = doctor;
+        this.animalId = animalId;
+        this.doctorId = doctorId;
         this.treatmentId = treatmentId;
     }
 
-    public Reservation(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctorId) {
+    public Reservation(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Long animalId, Long doctorId) {
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
-        this.animal = animal;
-        this.doctor = doctor;
+        this.animalId = animalId;
+        this.doctorId = doctorId;
     }
 
-    public Reservation(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Animal animal, Doctor doctor, Long treatmentId) {
+    public Reservation(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime, Long animalId, Long doctorId, Long treatmentId) {
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
-        this.animal = animal;
-        this.doctor = doctor;
+        this.animalId = animalId;
+        this.doctorId = doctorId;
         this.treatmentId = treatmentId;
     }
 }

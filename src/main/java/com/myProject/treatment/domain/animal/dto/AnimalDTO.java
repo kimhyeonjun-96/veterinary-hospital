@@ -2,19 +2,19 @@ package com.myProject.treatment.domain.animal.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 public class AnimalDTO {
 
     private Long id;
-    @NotEmpty(message = "아이의 이름은 필수 입니다.")
+    @NotEmpty(message = "반려동물의 이름은 필수 입니다.")
     private String name;
     private int height;
     private int weight;
     private String type;
     private Long memberId;
+
+    public AnimalDTO() {}
 
     public AnimalDTO(String name, int height, int weight, String type, Long memberId) {
         this.name = name;

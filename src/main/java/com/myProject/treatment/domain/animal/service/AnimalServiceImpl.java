@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AnimalServiceImpl implements AnimalService{
+public class AnimalServiceImpl{
 
     private final AnimalRepository animalRepository;
     private final MemberRepository memberRepository;
@@ -25,7 +25,6 @@ public class AnimalServiceImpl implements AnimalService{
      * 회원 반려동물 등록
      * 회원 추가적인 반려동물 등록
      */
-    @Override
     public AnimalDTO registAnimal(AnimalDTO aAnimalDTO, java.lang.Long memberId) {
         Member member = memberRepository.findById(memberId).get();
         Animal animal = new Animal(aAnimalDTO.getName(), aAnimalDTO.getHeight(), aAnimalDTO.getWeight(), aAnimalDTO.getType(),member);
@@ -37,7 +36,6 @@ public class AnimalServiceImpl implements AnimalService{
     /**
      * 회원의 특정 반려동물 확인
      */
-    @Override
     public List<AnimalDTO> getAnimalList(java.lang.Long memberId) {
         List<Animal> animalList = animalRepository.findByMemberId(memberId);
         List<AnimalDTO> getAnimalListDTO = new ArrayList<>();
@@ -52,7 +50,6 @@ public class AnimalServiceImpl implements AnimalService{
     /**
      * 진료 받을 반려동물 선택
      */
-    @Override
     public AnimalDTO selectAnimal(java.lang.Long animalId) {
         return null;
     }

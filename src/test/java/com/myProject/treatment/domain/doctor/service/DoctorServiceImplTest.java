@@ -12,10 +12,8 @@ import static org.assertj.core.api.Assertions.*;
 @Transactional
 @SpringBootTest
 class DoctorServiceImplTest {
-    @Autowired
-    DoctorService doctorService;
-    @Autowired
-    DoctorRepository doctorRepository;
+    @Autowired private DoctorServiceImpl doctorService;
+    @Autowired private DoctorRepository doctorRepository;
 
     @Test
     public void 수의사_회록등록(){

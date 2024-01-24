@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import java.time.LocalDateTime;
 
 @Getter
-@RequiredArgsConstructor
 public class ReservationDTO {
     private Long id;
     private LocalDateTime reservationStartTime;

@@ -1,12 +1,8 @@
 package com.myProject.treatment.domain.doctor;
 
-import com.myProject.treatment.domain.reservation.Reservation;
-import com.myProject.treatment.domain.treatment.Treatment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Getter
@@ -20,12 +16,8 @@ public class Doctor {
     private String doctorPwd;
     private String doctorName;
     private String doctorPhone;
-
-    @OneToMany(mappedBy = "doctor")
-    private List<Treatment> treatments;
-
-    @OneToMany(mappedBy = "doctor")
-    private List<Reservation> reservations;
+    private Long treatmentId;
+    private Long reservationId;
 
     public Doctor(String doctorId, String doctorPwd, String doctorName, String doctor_phone) {
         this.doctorId = doctorId;

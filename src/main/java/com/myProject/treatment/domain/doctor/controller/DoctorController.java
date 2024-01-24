@@ -1,7 +1,7 @@
 package com.myProject.treatment.domain.doctor.controller;
 
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
-import com.myProject.treatment.domain.doctor.service.DoctorService;
+import com.myProject.treatment.domain.doctor.service.DoctorServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 @RequiredArgsConstructor
 public class DoctorController {
 
-    private final DoctorService doctorService;
+    private final DoctorServiceImpl doctorService;
 
     /**
      * 수의사 등록

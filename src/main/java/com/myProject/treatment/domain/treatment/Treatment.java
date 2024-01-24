@@ -1,8 +1,6 @@
 package com.myProject.treatment.domain.treatment;
 
-import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.doctor.Doctor;
-import com.myProject.treatment.domain.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -17,23 +15,20 @@ public class Treatment {
     private String purpose;
     private Long memberId;
     private Long animalId;
-
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
+    private Long doctorId;
 
 
-    public Treatment(String purpose, Long memberId, Long animalId, Doctor doctor) {
+    public Treatment(String purpose, Long memberId, Long animalId, Long doctorId) {
         this.purpose = purpose;
         this.memberId = memberId;
         this.animalId = animalId;
-        this.doctor = doctor;
+        this.doctorId = doctorId;
     }
-    public Treatment(Long id, String purpose, Long memberId, Long animalId, Doctor doctor) {
+    public Treatment(Long id, String purpose, Long memberId, Long animalId, Long doctorId) {
         this.id = id;
         this.purpose = purpose;
         this.memberId = memberId;
         this.animalId = animalId;
-        this.doctor = doctor;
+        this.doctorId = doctorId;
     }
 }

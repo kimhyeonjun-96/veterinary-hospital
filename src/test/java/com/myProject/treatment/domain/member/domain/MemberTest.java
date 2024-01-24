@@ -2,10 +2,10 @@ package com.myProject.treatment.domain.member.domain;
 
 import com.myProject.treatment.domain.animal.dao.AnimalRepository;
 import com.myProject.treatment.domain.animal.dto.AnimalDTO;
-import com.myProject.treatment.domain.animal.service.AnimalService;
+import com.myProject.treatment.domain.animal.service.AnimalServiceImpl;
 import com.myProject.treatment.domain.member.dao.MemberRepository;
 import com.myProject.treatment.domain.member.dto.MemberDTO;
-import com.myProject.treatment.domain.member.service.MemberService;
+import com.myProject.treatment.domain.member.service.MemberServiceImpl;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,9 @@ import static org.assertj.core.api.Assertions.*;
 @Transactional
 class MemberTest {
 
-    @Autowired  MemberService memberService;
+    @Autowired private MemberServiceImpl memberService;
+    @Autowired private AnimalServiceImpl animalService;
     @Autowired  MemberRepository memberRepository;
-
-    @Autowired AnimalService animalService;
     @Autowired AnimalRepository animalRepository;
 
     @Test

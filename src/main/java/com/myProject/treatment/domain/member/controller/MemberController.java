@@ -3,12 +3,12 @@ package com.myProject.treatment.domain.member.controller;
 import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.animal.service.AnimalServiceImpl;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
-import com.myProject.treatment.domain.doctor.service.DoctorService;
+import com.myProject.treatment.domain.doctor.service.DoctorServiceImpl;
 import com.myProject.treatment.domain.member.dto.MemberDTO;
-import com.myProject.treatment.domain.member.service.MemberService;
+import com.myProject.treatment.domain.member.service.MemberServiceImpl;
 import com.myProject.treatment.domain.reservation.dto.CreateReservationRequest;
 import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
-import com.myProject.treatment.domain.reservation.service.ReservationService;
+import com.myProject.treatment.domain.reservation.service.ReservationServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +24,11 @@ import java.util.Map;
 @RequestMapping("/members")
 @RequiredArgsConstructor
 public class MemberController {
-
-    private final MemberService memberService;
+    
+    private final MemberServiceImpl memberService;
     private final AnimalServiceImpl animalService;
-    private final DoctorService doctorService;
-    private final ReservationService reservationService;
+    private final DoctorServiceImpl doctorService;
+    private final ReservationServiceImpl reservationService;
 
     /**
      * 회원가입

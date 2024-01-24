@@ -32,7 +32,7 @@ public class JpaReservationRepository implements ReservationRepository{
 
     @Override
     public List<ReservationDTO> findByDoctorIdReservationTime(Long doctorId) {
-        return em.createQuery("SELECT r.reservationStartTime, r.reservationEndTime FROM Reservation r WHERE r.doctor.id = :doctorId", ReservationDTO.class)
+        return em.createQuery("SELECT r.reservationStartTime, r.reservationEndTime FROM Reservation r WHERE r.doctorId = :doctorId", ReservationDTO.class)
                 .setParameter("doctorId", doctorId)
                 .getResultList();
     }
