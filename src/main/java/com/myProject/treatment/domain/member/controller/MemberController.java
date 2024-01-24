@@ -101,4 +101,20 @@ public class MemberController {
         else
             return ResponseEntity.created(new URI(url)).body("예약하지 못 했습니다.");
     }
+
+    /**
+     * 회원 정보 수정
+     */
+    @PutMapping("/{id}/update")
+    public ResponseEntity<?> updateMemberInfo(@PathVariable Long id, @RequestBody MemberDTO memberDTO) throws URISyntaxException {
+        MemberDTO updateMember = memberService.updateMember(id, memberDTO);
+        String url = "/members/" + id;
+        if(updateMember != null){
+            return ResponseEntity.created(new URI(url)).body(updateMember);
+        }else{
+            return ResponseEntity.created(new URI(url)).body("회원의 정보를 업데이트 하지 못 했습니다.");
+        }
+    }
+
+
 }

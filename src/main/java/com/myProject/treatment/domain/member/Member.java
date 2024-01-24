@@ -28,11 +28,31 @@ public class Member {
     private Long treatmentId;
 
     public Member() {}
+
+    public Member(String memberPwd, String memberPhone, String address) {
+        this.memberPwd = memberPwd;
+        this.memberPhone = memberPhone;
+        this.address = address;
+    }
+
     public Member(String memberId, String memberPwd, String memberName, String memberPhone, String address) {
         this.memberId = memberId;
         this.memberPwd = memberPwd;
         this.memberName = memberName;
         this.memberPhone = memberPhone;
+        this.address = address;
+    }
+
+    // 회원 비밀번호 변경
+    public void updateMemberPassword(String password){
+        this.memberPwd = password;
+    }
+    // 회원 전화번호 변경
+    public void updateMemberPhone(String phone){
+        this.memberPhone = phone;
+    }
+    // 회원 주소 변경
+    public void updateMemberAddress(String address){
         this.address = address;
     }
 
