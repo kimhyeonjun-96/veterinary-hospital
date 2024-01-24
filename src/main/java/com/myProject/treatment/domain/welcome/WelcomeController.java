@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomeController {
     @GetMapping("/")
     public String welcom(){
+        System.out.println("PR 테스트 중입니다. - 02");
         return "Welcome Page!";
     }
 }
