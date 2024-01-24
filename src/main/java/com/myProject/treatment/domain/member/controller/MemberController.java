@@ -5,10 +5,13 @@ import com.myProject.treatment.domain.animal.service.AnimalServiceImpl;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.doctor.service.DoctorServiceImpl;
 import com.myProject.treatment.domain.member.dto.MemberDTO;
+import com.myProject.treatment.domain.member.dto.MemberTreatmentHistoryDTO;
 import com.myProject.treatment.domain.member.service.MemberServiceImpl;
+import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.reservation.dto.CreateReservationRequest;
 import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
 import com.myProject.treatment.domain.reservation.service.ReservationServiceImpl;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -100,5 +103,17 @@ public class MemberController {
             return ResponseEntity.created(new URI(url)).body(reservation);
         else
             return ResponseEntity.created(new URI(url)).body("예약하지 못 했습니다.");
+    }
+
+    @GetMapping("{id}/mypage/getTreatmentList")
+    public ResponseEntity<?> getTreatmentList(@PathVariable Long id)throws URISyntaxException{
+        List<MemberTreatmentHistoryDTO> allTreatmentRecordsForMember = memberService.getAllTreatmentRecordsForMember(id);
+        String url = "/members/" + id + "/mypage";
+
+        if(!allTreatmentRecordsForMember.isEmpty()){
+            return ResponseEntity.created(new URI(url)).body(allTreatmentRecordsForMember.iterator());
+        }else{
+            return ResponseEntity.created(new URI(url)).body("아직 진료를 보신적이 없으세요");
+        }
     }
 }

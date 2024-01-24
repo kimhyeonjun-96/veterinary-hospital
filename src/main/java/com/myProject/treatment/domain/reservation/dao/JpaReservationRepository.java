@@ -44,4 +44,11 @@ public class JpaReservationRepository implements ReservationRepository{
         return reservation;
     }
 
+    @Override
+    public List<Reservation> findReservationByTreatmentId(Long treatmentId) {
+        return em.createQuery("select r.reservationStartTime, r.reservationEndTime from Reservation r where treatmentId = :treatmentId", Reservation.class)
+                .setParameter("treatmentId", treatmentId)
+                .getResultList();
+    }
+
 }
