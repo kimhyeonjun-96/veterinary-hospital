@@ -71,4 +71,16 @@ public class DoctorServiceImpl{
 
         return null;
     }
+
+    /**
+     * 의사의 정보 수정
+     */
+    public DoctorDTO updateDoctor(Long id, DoctorDTO doctorDTO) {
+        Doctor doctor = doctorRepository.findById(id).get();
+        doctor.updateDoctorPassword(doctorDTO.getDoctorPwd());
+        doctor.updateDoctorPhone(doctorDTO.getDoctorPhone());
+
+        Doctor updateDoctor = doctorRepository.saveDoctor(doctor);
+        return new DoctorDTO(updateDoctor.getId(), updateDoctor.getDoctorId(), updateDoctor.getDoctorPwd(), updateDoctor.getDoctorName(), updateDoctor.getDoctorPhone());
+    }
 }
