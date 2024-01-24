@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 @Entity
 public class Treatment {
     @Id
@@ -17,6 +16,7 @@ public class Treatment {
     private Long animalId;
     private Long doctorId;
 
+    public Treatment() {}
 
     public Treatment(String purpose, Long memberId, Long animalId, Long doctorId) {
         this.purpose = purpose;
@@ -31,4 +31,5 @@ public class Treatment {
         this.animalId = animalId;
         this.doctorId = doctorId;
     }
+
 }
