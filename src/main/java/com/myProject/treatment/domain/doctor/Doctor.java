@@ -27,5 +27,12 @@ public class Doctor {
         this.doctorPhone = doctor_phone;
     }
 
-
+    // 수의사 비밀번호 변경
+    public void updateDoctorPassword(String password){
+        this.doctorPwd = password;
+    }
+    // 수의사 전화번호 변경
+    public void updateDoctorPhone(String phone){
+        this.doctorPhone = phone;
+    }
 }

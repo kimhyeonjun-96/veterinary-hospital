@@ -36,6 +36,19 @@ public class DoctorController {
         return ResponseEntity.ok(oneDoctor);
     }
 
+    /**
+     * 수의사 정보 수정
+     */
+    @PutMapping("/{id}/update")
+    public ResponseEntity<?> updateDoctorInfo(@PathVariable Long id, @RequestBody DoctorDTO doctorDTO) throws URISyntaxException {
+        DoctorDTO updateDoctor = doctorService.updateDoctor(id, doctorDTO);
+        String url = "/doctor/" + updateDoctor.getId();
+        if(updateDoctor != null){
+            return ResponseEntity.created(new URI(url)).body(updateDoctor);
+        }else{
+            return ResponseEntity.created(new URI(url)).body("정보 업데이트를 하지 못 했습니다.");
+        }
+    }
 
 
 }
