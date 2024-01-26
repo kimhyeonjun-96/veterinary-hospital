@@ -1,11 +1,20 @@
 package com.myProject.treatment.domain.member.service;
 
+import com.myProject.treatment.domain.animal.Animal;
+import com.myProject.treatment.domain.animal.dao.AnimalRepository;
+import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.member.dao.MemberRepository;
 import com.myProject.treatment.domain.member.Member;
 import com.myProject.treatment.domain.member.dto.MemberDTO;
+import com.myProject.treatment.domain.member.dto.MemberTreatmentHistoryDTO;
+import com.myProject.treatment.domain.reservation.dao.ReservationRepository;
+import com.myProject.treatment.domain.treatment.Treatment;
+import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -14,6 +23,7 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl{
 
     private final MemberRepository memberRepository;
+    private final TreatmentRepository treatmentRepository;
 
     /**
      *회원가입
@@ -65,5 +75,12 @@ public class MemberServiceImpl{
 
         Member updateMember = memberRepository.saveMember(member);
         return new MemberDTO(updateMember.getId(), updateMember.getMemberId(), updateMember.getMemberPwd(), updateMember.getMemberName(), updateMember.getMemberPhone(), updateMember.getAddress());
+    }
+
+    /**
+     * 회원의 전체 진료 내역 확인
+     */
+    public List<MemberTreatmentHistoryDTO> getAllTreatmentRecordsForMember(Long id) {
+        return treatmentRepository.findTreatmentListByMemberId(id);
     }
 }
