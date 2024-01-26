@@ -1,11 +1,12 @@
 package com.myProject.treatment.domain.doctor.service;
 
+import com.myProject.treatment.domain.animal.Animal;
+import com.myProject.treatment.domain.animal.dao.AnimalRepository;
+import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
-import com.myProject.treatment.domain.reservation.Reservation;
-import com.myProject.treatment.domain.treatment.Treatment;
-import jakarta.persistence.EntityManager;
+import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorServiceImpl{
 
-    private final EntityManager em;
     private final DoctorRepository doctorRepository;
+    private final AnimalRepository animalRepository;
 
     /**
      * 수의사 등록
@@ -82,5 +83,14 @@ public class DoctorServiceImpl{
 
         Doctor updateDoctor = doctorRepository.saveDoctor(doctor);
         return new DoctorDTO(updateDoctor.getId(), updateDoctor.getDoctorId(), updateDoctor.getDoctorPwd(), updateDoctor.getDoctorName(), updateDoctor.getDoctorPhone());
+    }
+
+    public AnimalDTO updateAnimalInfoAfterTreatment(Long doctorId, Long treatmentId, AnimalDTO animalDTO) {
+        Animal animal = animalRepository.findByDoctorIdAndTreatmentId(doctorId, treatmentId).get();
+        animal.updateAnimalHeight(animalDTO.getHeight());
+        animal.updateAnimalWeight(animalDTO.getWeight());
+
+        Animal updateAnimal = animalRepository.saveAnimal(animal, animal.getMemberId());
+        return new AnimalDTO(updateAnimal.getId(), updateAnimal.getName(), updateAnimal.getHeight(), updateAnimal.getWeight(), updateAnimal.getType(), updateAnimal.getMemberId());
     }
 }

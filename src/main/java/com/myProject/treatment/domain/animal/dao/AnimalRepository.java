@@ -11,4 +11,6 @@ public interface AnimalRepository {
     Optional<Animal> findById(Long id);
 
     List<Animal> findByMemberId(Long memberId);
+
+    Optional<Animal> findByDoctorIdAndTreatmentId(Long doctorId, Long treatmentId);
 }
