@@ -65,10 +65,22 @@ public class MemberServiceImpl{
     }
 
     /**
+     * 회원 정보 수정
+     */
+    public MemberDTO updateMember(Long id, MemberDTO memberDTO) {
+        Member member = memberRepository.findById(id).get();
+        member.updateMemberPassword(memberDTO.getMemberPwd());
+        member.updateMemberPhone(member.getMemberPhone());
+        member.updateMemberAddress(memberDTO.getAddress());
+
+        Member updateMember = memberRepository.saveMember(member);
+        return new MemberDTO(updateMember.getId(), updateMember.getMemberId(), updateMember.getMemberPwd(), updateMember.getMemberName(), updateMember.getMemberPhone(), updateMember.getAddress());
+    }
+
+    /**
      * 회원의 전체 진료 내역 확인
      */
     public List<MemberTreatmentHistoryDTO> getAllTreatmentRecordsForMember(Long id) {
         return treatmentRepository.findTreatmentListByMemberId(id);
     }
-
 }

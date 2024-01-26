@@ -105,6 +105,24 @@ public class MemberController {
             return ResponseEntity.created(new URI(url)).body("예약하지 못 했습니다.");
     }
 
+
+    /**
+     * 회원 정보 수정
+     */
+    @PutMapping("/{id}/update")
+    public ResponseEntity<?> updateMemberInfo(@PathVariable Long id, @RequestBody MemberDTO memberDTO) throws URISyntaxException {
+        MemberDTO updateMember = memberService.updateMember(id, memberDTO);
+        String url = "/members/" + id;
+        if(updateMember != null){
+            return ResponseEntity.created(new URI(url)).body(updateMember);
+        }else{
+            return ResponseEntity.created(new URI(url)).body("회원의 정보를 업데이트 하지 못 했습니다.");
+        }
+    }
+
+    /**
+     * 회원 진료내역 전체 리스트 확인
+     */
     @GetMapping("{id}/mypage/getTreatmentList")
     public ResponseEntity<?> getTreatmentList(@PathVariable Long id)throws URISyntaxException{
         List<MemberTreatmentHistoryDTO> allTreatmentRecordsForMember = memberService.getAllTreatmentRecordsForMember(id);
@@ -116,4 +134,5 @@ public class MemberController {
             return ResponseEntity.created(new URI(url)).body("아직 진료를 보신적이 없으세요");
         }
     }
+
 }
