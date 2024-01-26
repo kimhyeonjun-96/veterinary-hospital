@@ -15,7 +15,6 @@ public class MemberDTO {
     private String memberName;
     private String memberPhone;
     private String address;
-    private TreatmentDTO treatmentDTO;
 
     public MemberDTO() {}
 

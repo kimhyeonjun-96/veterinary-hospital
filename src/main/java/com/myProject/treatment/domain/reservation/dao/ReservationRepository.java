@@ -16,4 +16,8 @@ public interface ReservationRepository {
     public List<ReservationDTO> findByDoctorIdReservationTime(Long doctorId);
 
     public Reservation saveTheReservation(Reservation reservation);
+
+    // 진료별 예약 확인
+    public List<Reservation> findReservationByTreatmentId(Long treatmentId);
+
 }
