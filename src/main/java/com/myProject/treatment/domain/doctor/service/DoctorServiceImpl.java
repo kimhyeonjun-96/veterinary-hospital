@@ -1,18 +1,19 @@
 package com.myProject.treatment.domain.doctor.service;
 
+import com.myProject.treatment.domain.animal.Animal;
+import com.myProject.treatment.domain.animal.dao.AnimalRepository;
+import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
-<<<<<<< HEAD
+import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
 import com.myProject.treatment.domain.doctor.dto.DoctorTreatmentHistoryDTO;
 import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.treatment.Treatment;
 import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
 import jakarta.persistence.EntityManager;
-=======
 import com.myProject.treatment.domain.doctor.dto.DoctorTodayTreatmentScheduleDTO;
 import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
->>>>>>> main
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ import java.util.List;
 public class DoctorServiceImpl{
 
     private final DoctorRepository doctorRepository;
+    private final AnimalRepository animalRepository;
     private final TreatmentRepository treatmentRepository;
 
     /**
@@ -103,6 +105,18 @@ public class DoctorServiceImpl{
      */
     public List<DoctorTreatmentHistoryDTO> getAllTreatmentRecordsForDoctor(Long id) {
         return treatmentRepository.findTreatmentListByDoctorId(id);
+    }
+
+    /**
+     * 의사 진료 후 반려 동물 전보 업데이트
+     */
+    public AnimalDTO updateAnimalInfoAfterTreatment(Long doctorId, Long treatmentId, AnimalDTO animalDTO) {
+        Animal animal = animalRepository.findByDoctorIdAndTreatmentId(doctorId, treatmentId).get();
+        animal.updateAnimalHeight(animalDTO.getHeight());
+        animal.updateAnimalWeight(animalDTO.getWeight());
+
+        Animal updateAnimal = animalRepository.saveAnimal(animal, animal.getMemberId());
+        return new AnimalDTO(updateAnimal.getId(), updateAnimal.getName(), updateAnimal.getHeight(), updateAnimal.getWeight(), updateAnimal.getType(), updateAnimal.getMemberId());
     }
 }
 

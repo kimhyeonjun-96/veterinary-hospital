@@ -1,5 +1,6 @@
 package com.myProject.treatment.domain.doctor.controller;
 
+import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.doctor.dto.DoctorTreatmentHistoryDTO;
 import com.myProject.treatment.domain.doctor.dto.DoctorTodayTreatmentScheduleDTO;
@@ -48,6 +49,25 @@ public class DoctorController {
         String url = "/doctor/" + updateDoctor.getId();
         if(updateDoctor != null){
             return ResponseEntity.created(new URI(url)).body(updateDoctor);
+        }else{
+            return ResponseEntity.created(new URI(url)).body("정보 업데이트를 하지 못 했습니다.");
+        }
+    }
+
+    /**
+     * 진료 후 반려동물 정보 업데이트
+     */
+    @PutMapping("/{doctorId}/treatment/{treatmentId}/update-pet-info")
+    public ResponseEntity<?> updatePetInfoAfterTreatment(
+            @PathVariable Long doctorId,
+            @PathVariable Long treatmentId,
+            @RequestBody AnimalDTO animalDTO
+            ) throws URISyntaxException {
+        AnimalDTO updateAnimal = doctorService.updateAnimalInfoAfterTreatment(doctorId, treatmentId, animalDTO);
+        String url = "/doctor/" +doctorId + "/treatment/" + updateAnimal.getId();
+
+        if(updateAnimal != null){
+            return ResponseEntity.created(new URI(url)).body(updateAnimal);
         }else{
             return ResponseEntity.created(new URI(url)).body("정보 업데이트를 하지 못 했습니다.");
         }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Repository
 public class JpaAnimalRepository implements AnimalRepository{
@@ -30,10 +31,25 @@ public class JpaAnimalRepository implements AnimalRepository{
 
     @Override
     public List<Animal> findByMemberId(Long memberId) {
-        List<Animal> result = em.createQuery("select a from Animal a where a.members.id = :memberId", Animal.class)
+        List<Animal> result = em.createQuery("select a from Animal a where a.memberId = :memberId", Animal.class)
                 .setParameter("memberId", memberId)
                 .getResultList();
 
         return result;
     }
+
+    @Override
+    public Optional<Animal> findByDoctorIdAndTreatmentId(Long doctorId, Long treatmentId) {
+        Animal animal = em.createQuery("select a from Animal a JOIN Treatment t on t.animalId = a.id" +
+                        " where t.id = :treatmentId" +
+                        " and t.doctorId = :doctorId", Animal.class)
+                .setParameter("treatmentId", treatmentId)
+                .setParameter("doctorId", doctorId)
+                .getResultList()
+                .stream()
+                .findAny()
+                .get();
+        return Optional.ofNullable(animal);
+    }
+
 }
