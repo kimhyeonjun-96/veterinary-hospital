@@ -3,11 +3,16 @@ package com.myProject.treatment.domain.doctor.service;
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
+<<<<<<< HEAD
 import com.myProject.treatment.domain.doctor.dto.DoctorTreatmentHistoryDTO;
 import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.treatment.Treatment;
 import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
 import jakarta.persistence.EntityManager;
+=======
+import com.myProject.treatment.domain.doctor.dto.DoctorTodayTreatmentScheduleDTO;
+import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
+>>>>>>> main
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -87,10 +92,18 @@ public class DoctorServiceImpl{
     }
 
     /**
-     * 의사 전체 진료 내역 확인
+     * 수의사의 오늘 진료들 확인
      */
-    public List<DoctorTreatmentHistoryDTO> getAllTreatmentRecordsForDoctor(Long id){
-        return treatmentRepository.findTreatmentListByDoctorId(id);
+    public List<DoctorTodayTreatmentScheduleDTO> getDoctorTodaySchedule(Long id){
+        return treatmentRepository.findTodayTreatmentListByDoctorId(id);
     }
 
+    /**
+     * 의사 전체 진료 내역 확인
+     */
+    public List<DoctorTreatmentHistoryDTO> getAllTreatmentRecordsForDoctor(Long id) {
+        return treatmentRepository.findTreatmentListByDoctorId(id);
+    }
 }
+
+

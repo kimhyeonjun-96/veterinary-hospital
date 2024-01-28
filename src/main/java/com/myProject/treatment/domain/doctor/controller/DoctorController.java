@@ -2,6 +2,7 @@ package com.myProject.treatment.domain.doctor.controller;
 
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.doctor.dto.DoctorTreatmentHistoryDTO;
+import com.myProject.treatment.domain.doctor.dto.DoctorTodayTreatmentScheduleDTO;
 import com.myProject.treatment.domain.doctor.service.DoctorServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +59,6 @@ public class DoctorController {
     @GetMapping("/{id}/mypage/getTreamentList")
     public ResponseEntity<?> getDoctorTreatmentList(@PathVariable Long id) throws URISyntaxException {
         List<DoctorTreatmentHistoryDTO> allTreatmentRecordsForDoctor = doctorService.getAllTreatmentRecordsForDoctor(id);
-
         String url = "/doctor/" + id + "/mypage";
         if(!allTreatmentRecordsForDoctor.isEmpty()){
             return ResponseEntity.created(new URI(url)).body(allTreatmentRecordsForDoctor.iterator());
@@ -66,5 +66,20 @@ public class DoctorController {
             return ResponseEntity.created(new URI(url)).body("아직 진료를 보신적이 없으세요");
         }
     }
+    /**
+     * 수의사의 오늘 진료들 확인
+     */
+    @GetMapping("/{id}/today-treatment")
+    public ResponseEntity<?> getDoctorSchedule(@PathVariable Long id) throws URISyntaxException {
+        List<DoctorTodayTreatmentScheduleDTO> doctorTodaySchedule = doctorService.getDoctorTodaySchedule(id);
+        String url = "/doctor/" + id + "/mypage";
+
+        if(!doctorTodaySchedule.isEmpty()){
+            return ResponseEntity.created(new URI(url)).body(doctorTodaySchedule);
+        }else{
+            return ResponseEntity.created(new URI(url)).body("오늘은 예약된 진료가 없습니다.");
+        }
+    }
+
 }
 
