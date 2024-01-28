@@ -7,6 +7,13 @@ import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
+import com.myProject.treatment.domain.doctor.dto.DoctorTreatmentHistoryDTO;
+import com.myProject.treatment.domain.reservation.Reservation;
+import com.myProject.treatment.domain.treatment.Treatment;
+import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
+import jakarta.persistence.EntityManager;
+import com.myProject.treatment.domain.doctor.dto.DoctorTodayTreatmentScheduleDTO;
+import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +28,7 @@ public class DoctorServiceImpl{
 
     private final DoctorRepository doctorRepository;
     private final AnimalRepository animalRepository;
+    private final TreatmentRepository treatmentRepository;
 
     /**
      * 수의사 등록
@@ -85,6 +93,23 @@ public class DoctorServiceImpl{
         return new DoctorDTO(updateDoctor.getId(), updateDoctor.getDoctorId(), updateDoctor.getDoctorPwd(), updateDoctor.getDoctorName(), updateDoctor.getDoctorPhone());
     }
 
+    /**
+     * 수의사의 오늘 진료들 확인
+     */
+    public List<DoctorTodayTreatmentScheduleDTO> getDoctorTodaySchedule(Long id){
+        return treatmentRepository.findTodayTreatmentListByDoctorId(id);
+    }
+
+    /**
+     * 의사 전체 진료 내역 확인
+     */
+    public List<DoctorTreatmentHistoryDTO> getAllTreatmentRecordsForDoctor(Long id) {
+        return treatmentRepository.findTreatmentListByDoctorId(id);
+    }
+
+    /**
+     * 의사 진료 후 반려 동물 전보 업데이트
+     */
     public AnimalDTO updateAnimalInfoAfterTreatment(Long doctorId, Long treatmentId, AnimalDTO animalDTO) {
         Animal animal = animalRepository.findByDoctorIdAndTreatmentId(doctorId, treatmentId).get();
         animal.updateAnimalHeight(animalDTO.getHeight());
@@ -94,3 +119,5 @@ public class DoctorServiceImpl{
         return new AnimalDTO(updateAnimal.getId(), updateAnimal.getName(), updateAnimal.getHeight(), updateAnimal.getWeight(), updateAnimal.getType(), updateAnimal.getMemberId());
     }
 }
+
+
