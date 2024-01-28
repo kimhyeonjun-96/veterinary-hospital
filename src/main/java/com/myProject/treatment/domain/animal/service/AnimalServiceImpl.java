@@ -27,10 +27,10 @@ public class AnimalServiceImpl{
      */
     public AnimalDTO registAnimal(AnimalDTO aAnimalDTO, java.lang.Long memberId) {
         Member member = memberRepository.findById(memberId).get();
-        Animal animal = new Animal(aAnimalDTO.getName(), aAnimalDTO.getHeight(), aAnimalDTO.getWeight(), aAnimalDTO.getType(),member);
+        Animal animal = new Animal(aAnimalDTO.getName(), aAnimalDTO.getHeight(), aAnimalDTO.getWeight(), aAnimalDTO.getType(),member.getId());
         Animal registerAnimal = animalRepository.saveAnimal(animal, memberId);
 
-        return new AnimalDTO(registerAnimal.getId(), registerAnimal.getName(), registerAnimal.getHeight(), registerAnimal.getWeight(), registerAnimal.getType(), registerAnimal.getMembers().getId());
+        return new AnimalDTO(registerAnimal.getId(), registerAnimal.getName(), registerAnimal.getHeight(), registerAnimal.getWeight(), registerAnimal.getType(), registerAnimal.getMemberId());
     }
 
     /**
@@ -41,7 +41,7 @@ public class AnimalServiceImpl{
         List<AnimalDTO> getAnimalListDTO = new ArrayList<>();
 
         for(Animal animal : animalList){
-            getAnimalListDTO.add(new AnimalDTO(animal.getId(), animal.getName(), animal.getHeight(), animal.getWeight(), animal.getType(), animal.getMembers().getId()));
+            getAnimalListDTO.add(new AnimalDTO(animal.getId(), animal.getName(), animal.getHeight(), animal.getWeight(), animal.getType(), animal.getMemberId()));
         }
 
         return getAnimalListDTO;

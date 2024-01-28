@@ -3,9 +3,8 @@ package com.myProject.treatment.domain.doctor.service;
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
-import com.myProject.treatment.domain.reservation.Reservation;
-import com.myProject.treatment.domain.treatment.Treatment;
-import jakarta.persistence.EntityManager;
+import com.myProject.treatment.domain.doctor.dto.DoctorTodayTreatmentScheduleDTO;
+import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorServiceImpl{
 
-    private final EntityManager em;
     private final DoctorRepository doctorRepository;
+    private final TreatmentRepository treatmentRepository;
 
     /**
      * 수의사 등록
@@ -83,4 +82,12 @@ public class DoctorServiceImpl{
         Doctor updateDoctor = doctorRepository.saveDoctor(doctor);
         return new DoctorDTO(updateDoctor.getId(), updateDoctor.getDoctorId(), updateDoctor.getDoctorPwd(), updateDoctor.getDoctorName(), updateDoctor.getDoctorPhone());
     }
+
+    /**
+     * 수의사의 오늘 진료들 확인
+     */
+    public List<DoctorTodayTreatmentScheduleDTO> getDoctorTodaySchedule(Long id){
+        return treatmentRepository.findTodayTreatmentListByDoctorId(id);
+    }
+
 }
