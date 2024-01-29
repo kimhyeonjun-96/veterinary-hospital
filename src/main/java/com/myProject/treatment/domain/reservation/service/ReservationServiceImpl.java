@@ -12,6 +12,7 @@ import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
 import com.myProject.treatment.domain.treatment.Treatment;
 import com.myProject.treatment.domain.treatment.dto.TreatmentDTO;
 import com.myProject.treatment.domain.treatment.service.TreatmentServiceImpl;
+import com.myProject.treatment.exception.ReservationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,34 +25,22 @@ import java.util.List;
 public class ReservationServiceImpl{
 
     private final ReservationRepository reservationRepository;
-    private final MemberRepository memberRepository;
     private final AnimalRepository animalRepository;
     private final DoctorRepository doctorRepository;
     private final TreatmentServiceImpl treatmentService;
     private final DoctorServiceImpl doctorService;
-
-    public List<Reservation> getReservation(Long id) {
-        return null;
-    }
 
     public ReservationDTO createReservation(Long memberId, TreatmentDTO treatmentDTO, LocalDateTime selectStartTime, LocalDateTime selectEndTime) {
         Doctor doctor = doctorRepository.findById(treatmentDTO.getDoctorId()).get(); // 선택된 의사 가져오기
 
         if(checkReservationTime(doctor.getId(), selectStartTime, selectEndTime)){ // 선택한 시간 가능한지 확인
             Treatment saveTreatment = treatmentService.createTreatment(memberId, treatmentDTO); // 진료 정보 저장
-
             Animal animal = animalRepository.findById(saveTreatment.getAnimalId()).get(); // 예약 정보 저장을 위한 반려동물 데이터
             Reservation reservation = reservationRepository.saveTheReservation(new Reservation(selectStartTime, selectEndTime, animal.getId(), doctor.getId(), saveTreatment.getId()));
-
-            // 회원의 treatment_id update
-
-            // 의사의 treatment_id update
             doctorService.addTreamentToDoctor(doctor.getId(), saveTreatment.getId());
-            // 예약의 treatment_id ipdate
-            // 저장된 예약 반환
             return new ReservationDTO(reservation.getId(), reservation.getReservationStartTime(), reservation.getReservationEndTime(), reservation.getAnimalId(), reservation.getDoctorId(), reservation.getTreatmentId());
         }else{
-            return null;
+            throw new ReservationException("이미 예약된 시간입니다.");
         }
     }
 
@@ -63,11 +52,11 @@ public class ReservationServiceImpl{
         for(ReservationDTO reservationDTO : reservationTimeDTOList){
             LocalDateTime existingTime = typeConversion(reservationDTO.getReservationStartTime());
             if(existingTime.equals(selectStartTime)){
-                System.out.println("이미 예약된 시간입니다.");
+//                System.out.println("이미 예약된 시간입니다.");
                 return false;
             }
         }
-        System.out.println("선택한 시간으로 예약 되었습니다.");
+//        System.out.println("선택한 시간으로 예약 되었습니다.");
         return true;
     }
 
@@ -75,10 +64,6 @@ public class ReservationServiceImpl{
         DateTimeFormatter coversionTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String strTime = time.format(coversionTime);
         return LocalDateTime.parse(strTime, coversionTime);
-    }
-
-    public void completedReservation() {
-
     }
 
 }
