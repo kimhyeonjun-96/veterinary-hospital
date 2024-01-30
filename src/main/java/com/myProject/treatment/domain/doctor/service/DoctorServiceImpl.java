@@ -74,14 +74,6 @@ public class DoctorServiceImpl{
     }
 
     /**
-     * 특정 의사에게 진료 추가
-     */
-    public DoctorDTO addTreamentToDoctor(Long doctorId, Long treatmentId) {
-
-        return null;
-    }
-
-    /**
      * 의사의 정보 수정
      */
     public DoctorDTO updateDoctor(Long id, DoctorDTO doctorDTO) {

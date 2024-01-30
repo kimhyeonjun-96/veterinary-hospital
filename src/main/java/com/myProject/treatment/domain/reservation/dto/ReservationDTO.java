@@ -14,6 +14,8 @@ public class ReservationDTO {
     private Long doctorId;
     private Long treatmentId;
 
+    public ReservationDTO() {}
+
     public ReservationDTO(LocalDateTime reservationStartTime, LocalDateTime reservationEndTime) {
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
