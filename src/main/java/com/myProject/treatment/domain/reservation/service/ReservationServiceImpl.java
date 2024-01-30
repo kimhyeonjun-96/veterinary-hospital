@@ -13,6 +13,7 @@ import com.myProject.treatment.domain.treatment.Treatment;
 import com.myProject.treatment.domain.treatment.dto.TreatmentDTO;
 import com.myProject.treatment.domain.treatment.service.TreatmentServiceImpl;
 import com.myProject.treatment.exception.ReservationException;
+import com.myProject.treatment.exception.TestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,13 @@ public class ReservationServiceImpl{
             return new ReservationDTO(reservation.getId(), reservation.getReservationStartTime(), reservation.getReservationEndTime(), reservation.getAnimalId(), reservation.getDoctorId(), reservation.getTreatmentId());
         }else{
             throw new ReservationException("이미 예약된 시간입니다.");
+
+//            doctorService.addTreamentToDoctor(doctor.getId(), saveTreatment.getId());
+//            return new ReservationDTO(reservation.getId(), reservation.getReservationStartTime(), reservation.getReservationEndTime(), reservation.getAnimalId(), reservation.getDoctorId(), reservation.getTreatmentId());
         }
+//        else{
+//            throw new TestException("테스트 예외처리");
+//        }
     }
 
     public boolean checkReservationTime(Long doctorId, LocalDateTime selectStartTime, LocalDateTime selectEndTime) {
