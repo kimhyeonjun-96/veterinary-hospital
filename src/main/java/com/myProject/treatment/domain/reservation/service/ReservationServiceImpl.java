@@ -5,7 +5,6 @@ import com.myProject.treatment.domain.animal.dao.AnimalRepository;
 import com.myProject.treatment.domain.doctor.Doctor;
 import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.doctor.service.DoctorServiceImpl;
-import com.myProject.treatment.domain.member.dao.MemberRepository;
 import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.reservation.dao.ReservationRepository;
 import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
@@ -13,7 +12,6 @@ import com.myProject.treatment.domain.treatment.Treatment;
 import com.myProject.treatment.domain.treatment.dto.TreatmentDTO;
 import com.myProject.treatment.domain.treatment.service.TreatmentServiceImpl;
 import com.myProject.treatment.exception.ReservationException;
-import com.myProject.treatment.exception.TestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -42,13 +40,7 @@ public class ReservationServiceImpl{
             return new ReservationDTO(reservation.getId(), reservation.getReservationStartTime(), reservation.getReservationEndTime(), reservation.getAnimalId(), reservation.getDoctorId(), reservation.getTreatmentId());
         }else{
             throw new ReservationException("이미 예약된 시간입니다.");
-
-//            doctorService.addTreamentToDoctor(doctor.getId(), saveTreatment.getId());
-//            return new ReservationDTO(reservation.getId(), reservation.getReservationStartTime(), reservation.getReservationEndTime(), reservation.getAnimalId(), reservation.getDoctorId(), reservation.getTreatmentId());
         }
-//        else{
-//            throw new TestException("테스트 예외처리");
-//        }
     }
 
     public boolean checkReservationTime(Long doctorId, LocalDateTime selectStartTime, LocalDateTime selectEndTime) {
@@ -59,11 +51,9 @@ public class ReservationServiceImpl{
         for(ReservationDTO reservationDTO : reservationTimeDTOList){
             LocalDateTime existingTime = typeConversion(reservationDTO.getReservationStartTime());
             if(existingTime.equals(selectStartTime)){
-//                System.out.println("이미 예약된 시간입니다.");
                 return false;
             }
         }
-//        System.out.println("선택한 시간으로 예약 되었습니다.");
         return true;
     }
 
