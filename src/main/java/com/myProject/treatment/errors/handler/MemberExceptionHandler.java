@@ -13,22 +13,22 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class MemberExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(AlreadyReservationException.class)
-    public ResponseEntity<Object> handleAlreadyReservationException(AlreadyReservationException e){
-        ErrorCode errorCode = e.getErrorCode();
-        return handleExceptionInternal(errorCode);
-    }
-
-    private ResponseEntity<Object> handleExceptionInternal(ErrorCode errorCode) {
-        return ResponseEntity.status(errorCode.getHttpStatus())
-                .body(makeErrorResponse(errorCode));
-    }
-
-    private ErrorResponse makeErrorResponse(ErrorCode errorCode) {
-        return ErrorResponse.builder()
-                .code(errorCode.name())
-                .message(errorCode.getMessage())
-                .build();
-    }
+//    @ExceptionHandler(AlreadyReservationException.class)
+//    public ResponseEntity<Object> handleAlreadyReservationException(AlreadyReservationException e){
+//        ErrorCode errorCode = e.getErrorCode();
+//        return handleExceptionInternal(errorCode);
+//    }
+//
+//    private ResponseEntity<Object> handleExceptionInternal(ErrorCode errorCode) {
+//        return ResponseEntity.status(errorCode.getHttpStatus())
+//                .body(makeErrorResponse(errorCode));
+//    }
+//
+//    private ErrorResponse makeErrorResponse(ErrorCode errorCode) {
+//        return ErrorResponse.builder()
+//                .code(errorCode.name())
+//                .message(errorCode.getMessage())
+//                .build();
+//    }
 
 }

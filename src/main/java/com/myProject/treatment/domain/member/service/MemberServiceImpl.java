@@ -10,15 +10,15 @@ import com.myProject.treatment.domain.member.dto.MemberTreatmentHistoryDTO;
 import com.myProject.treatment.domain.reservation.dao.ReservationRepository;
 import com.myProject.treatment.domain.treatment.Treatment;
 import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MemberServiceImpl{
 
@@ -28,6 +28,7 @@ public class MemberServiceImpl{
     /**
      *회원가입
      */
+    @Transactional
     public MemberDTO signupMember(MemberDTO aMemberDTO) {
         validateDuplicateMember(aMemberDTO);
         memberRepository.saveMember(new Member(aMemberDTO.getMemberId(), aMemberDTO.getMemberPwd(), aMemberDTO.getMemberName(), aMemberDTO.getMemberPhone(), aMemberDTO.getAddress()));
@@ -67,6 +68,7 @@ public class MemberServiceImpl{
     /**
      * 회원 정보 수정
      */
+    @Transactional
     public MemberDTO updateMember(Long id, MemberDTO memberDTO) {
         Member member = memberRepository.findById(id).get();
         member.updateMemberPassword(memberDTO.getMemberPwd());

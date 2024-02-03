@@ -9,8 +9,8 @@ import com.myProject.treatment.domain.member.dto.MemberTreatmentHistoryDTO;
 import com.myProject.treatment.domain.member.service.MemberServiceImpl;
 import com.myProject.treatment.domain.reservation.dto.CreateReservationRequest;
 import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
-import com.myProject.treatment.domain.reservation.service.ReservationServiceImpl;
-import com.myProject.treatment.errors.errorcode.CustomErrorCode;
+import com.myProject.treatment.domain.reservation.service.ReservationServiceImpl;;
+import com.myProject.treatment.errors.errorcode.MemberErrorCode;
 import com.myProject.treatment.errors.exception.AlreadyReservationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -100,7 +100,7 @@ public class MemberController {
         ReservationDTO reservation = reservationService.createReservation(id, request.getTreatmentDTO(), request.getSelectStartTime(), request.getSelectEndTime());
 
         if(Objects.isNull(reservation)){
-            throw new AlreadyReservationException(CustomErrorCode.DUPLICATED_RESERVATION_TIME);
+            throw new AlreadyReservationException(MemberErrorCode.DUPLICATED_RESERVATION_TIME);
         }
         String url = "/members/" + id;
         return ResponseEntity.ok(new MemberCommonResponse("sucess", "선택한 시간으로 예약 되었습니다.", reservation));
