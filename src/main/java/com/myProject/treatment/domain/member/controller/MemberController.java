@@ -7,11 +7,11 @@ import com.myProject.treatment.domain.doctor.service.DoctorServiceImpl;
 import com.myProject.treatment.domain.member.dto.MemberDTO;
 import com.myProject.treatment.domain.member.dto.MemberTreatmentHistoryDTO;
 import com.myProject.treatment.domain.member.service.MemberServiceImpl;
-import com.myProject.treatment.domain.reservation.Reservation;
 import com.myProject.treatment.domain.reservation.dto.CreateReservationRequest;
 import com.myProject.treatment.domain.reservation.dto.ReservationDTO;
 import com.myProject.treatment.domain.reservation.service.ReservationServiceImpl;
-import lombok.Getter;
+import com.myProject.treatment.errors.errorcode.CustomErrorCode;
+import com.myProject.treatment.errors.exception.AlreadyReservationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +22,7 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/members")
@@ -98,11 +99,11 @@ public class MemberController {
             @RequestBody CreateReservationRequest request)throws URISyntaxException{
         ReservationDTO reservation = reservationService.createReservation(id, request.getTreatmentDTO(), request.getSelectStartTime(), request.getSelectEndTime());
 
+        if(Objects.isNull(reservation)){
+            throw new AlreadyReservationException(CustomErrorCode.DUPLICATED_RESERVATION_TIME);
+        }
         String url = "/members/" + id;
-        if(reservation != null)
-            return ResponseEntity.created(new URI(url)).body(reservation);
-        else
-            return ResponseEntity.created(new URI(url)).body("예약하지 못 했습니다.");
+        return ResponseEntity.ok(new MemberCommonResponse("sucess", "선택한 시간으로 예약 되었습니다.", reservation));
     }
 
     /**
