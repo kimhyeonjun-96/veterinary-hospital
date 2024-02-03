@@ -8,21 +8,16 @@ import com.myProject.treatment.domain.doctor.dao.DoctorRepository;
 import com.myProject.treatment.domain.doctor.dto.DoctorDTO;
 import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
 import com.myProject.treatment.domain.doctor.dto.DoctorTreatmentHistoryDTO;
-import com.myProject.treatment.domain.reservation.Reservation;
-import com.myProject.treatment.domain.treatment.Treatment;
-import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
-import jakarta.persistence.EntityManager;
 import com.myProject.treatment.domain.doctor.dto.DoctorTodayTreatmentScheduleDTO;
-import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class DoctorServiceImpl{
 
@@ -33,6 +28,7 @@ public class DoctorServiceImpl{
     /**
      * 수의사 등록
      */
+    @Transactional
     public DoctorDTO signupDoctor(DoctorDTO doctorDTO) {
         Doctor doctor = new Doctor(doctorDTO.getDoctorId(), doctorDTO.getDoctorPwd(), doctorDTO.getDoctorName(), doctorDTO.getDoctorPhone());
         validateDuplicateMember(doctor);
@@ -55,9 +51,6 @@ public class DoctorServiceImpl{
      */
     public DoctorDTO findOneDoctor(Long doctorId) {
         Doctor doctor = doctorRepository.findById(doctorId).get();
-//        List<Treatment> treatmentList = doctor.getTreatmentId();
-//        List<Reservation> reservationList = doctor.getReservationId();
-
         return new DoctorDTO(doctor.getId(), doctor.getDoctorId(), doctor.getDoctorPwd(), doctor.getDoctorName(), doctor.getDoctorPhone());
     }
 
@@ -76,6 +69,7 @@ public class DoctorServiceImpl{
     /**
      * 의사의 정보 수정
      */
+    @Transactional
     public DoctorDTO updateDoctor(Long id, DoctorDTO doctorDTO) {
         Doctor doctor = doctorRepository.findById(id).get();
         doctor.updateDoctorPassword(doctorDTO.getDoctorPwd());
@@ -102,6 +96,7 @@ public class DoctorServiceImpl{
     /**
      * 의사 진료 후 반려 동물 전보 업데이트
      */
+    @Transactional
     public AnimalDTO updateAnimalInfoAfterTreatment(Long doctorId, Long treatmentId, AnimalDTO animalDTO) {
         Animal animal = animalRepository.findByDoctorIdAndTreatmentId(doctorId, treatmentId).get();
         animal.updateAnimalHeight(animalDTO.getHeight());

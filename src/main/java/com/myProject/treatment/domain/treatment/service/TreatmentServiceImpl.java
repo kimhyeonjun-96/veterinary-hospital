@@ -11,9 +11,11 @@ import com.myProject.treatment.domain.treatment.dao.TreatmentRepository;
 import com.myProject.treatment.domain.treatment.dto.TreatmentDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class TreatmentServiceImpl{
 
     private final TreatmentRepository treatmentRepository;
@@ -21,6 +23,7 @@ public class TreatmentServiceImpl{
     private final AnimalRepository animalRepository;
     private final DoctorRepository doctorRepository;
 
+    @Transactional
     public Treatment createTreatment(Long memberId, TreatmentDTO treatmentDTO) {
         Member member = memberRepository.findById(memberId).get();
         Animal animal = animalRepository.findById(treatmentDTO.getAnimalId()).get();

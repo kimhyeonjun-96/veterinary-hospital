@@ -5,15 +5,15 @@ import com.myProject.treatment.domain.animal.Animal;
 import com.myProject.treatment.domain.animal.dto.AnimalDTO;
 import com.myProject.treatment.domain.member.Member;
 import com.myProject.treatment.domain.member.dao.MemberRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class AnimalServiceImpl{
 
@@ -25,6 +25,7 @@ public class AnimalServiceImpl{
      * 회원 반려동물 등록
      * 회원 추가적인 반려동물 등록
      */
+    @Transactional
     public AnimalDTO registAnimal(AnimalDTO aAnimalDTO, java.lang.Long memberId) {
         Member member = memberRepository.findById(memberId).get();
         Animal animal = new Animal(aAnimalDTO.getName(), aAnimalDTO.getHeight(), aAnimalDTO.getWeight(), aAnimalDTO.getType(),member.getId());
